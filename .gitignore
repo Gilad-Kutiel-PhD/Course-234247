@@ -10,3 +10,5 @@ template
 *.dropbox
 *.tmp
 
+*.fls
+*.fdb_latexmk
