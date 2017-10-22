@@ -1,0 +1,12 @@
+material
+questions
+template
+*.swp
+*.zip
+*~
+*.aux
+*.pdf
+*.log
+*.dropbox
+*.tmp
+

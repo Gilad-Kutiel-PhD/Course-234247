@@ -1,0 +1,44 @@
+\usetikzlibrary{
+automata,
+arrows,
+arrows.meta,
+shapes,
+positioning,
+}
+
+%DEFAULT STYLE
+\tikzset{default style/.style={
+	>=Stealth, 
+	on grid, 
+	auto, 
+	thick,
+}}
+
+% NODE
+\tikzset{default node/.style={
+	draw, 
+	circle,
+	inner sep=0mm,
+	minimum size=5mm,
+	very thick,
+	font=\small,
+	black!70,
+}}
+
+% LABELS
+\tikzset{label/.style={
+	draw=none,
+	sloped,
+}}
+
+\tikzset{label above/.style={
+	label,
+	midway,
+	above=-1mm,
+}}
+
+\tikzset{label below/.style={
+	label,
+	midway,
+	below=-1mm,
+}}
