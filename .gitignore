@@ -1,14 +1,9 @@
-material
-questions
-template
 *.swp
 *.zip
 *~
 *.aux
-*.pdf
 *.log
 *.dropbox
 *.tmp
-
 *.fls
 *.fdb_latexmk
