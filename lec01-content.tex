@@ -29,22 +29,31 @@
 \end{example}
 למשל עבור:
 \begin{center}
-\begin{tikzpicture}[every node/.style={rectangle}, ->]
-\node(00) at(0,0) {\text{C:}};
+\begin{tikzpicture}[every node/.style={
+	rectangle
+%	, minimum width=1.5cm
+%	, draw
+	, text width=1.5cm
+	, x=2.2cm
+}, ->]
 
-\node(10) at(-2, -1){\text{Documents}};
-\node(12) at(0, -1){\text{Downloads}};
-\node(13) at(2, -1){\text{Pictures}};
-\node(14) at(4, -1){\text{Music}};
-
-\node(21) at(0, -2){\text{Image1.jpg}};
-\node(22) at(2, -2){\text{Image2.jpg}};
-
-\foreach \v in {10,12,13,14}{
-	\draw (00) -- (\v);
+\node[text width=2mm](0) at(0,1) {/};
+\foreach [count=\i] \x \y \name in {
+	1/0/Documents
+	, 1/-1/Downloads
+	, 1/-2/Music
+	, 1/-3/Pictures
+	, 2/-1.5/Image1.jpg
+	, 2/-3.5/Image2.jpg	
+}{
+	\node(\i) at(\x, \y) {\name};
 }
-\draw (12) -- (21);
-\draw (13) -- (22);
+
+\foreach \i in {1,...,4}{
+	\draw (0) |- (\i);
+}
+\draw (2) |- (5);
+\draw (4) |- (6);
 
 \end{tikzpicture}
 \end{center}
