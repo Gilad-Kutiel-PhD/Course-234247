@@ -86,6 +86,44 @@
 \\
 \textbf{מטרה:}
 למצוא תת עץ שפורש את כל הצמתים שישיגים מ-$s$.
+\\
+למשל:
+\begin{center}
+\begin{tikzpicture}[every node/.style={circle, draw, minimum width=5mm}]
+
+\node(s) at(0,0) {s};
+\foreach [count=\i] \x\y in {-1/-1,1/-1,0/-2}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+\foreach \u \v in {
+s/1%
+,s/2%
+,1/2%
+,1/3%
+,2/3%
+}{
+	\draw (\u) -- (\v);
+}
+
+\begin{scope}[xshift=6cm]
+\node(s) at(0,0) {s};
+\foreach [count=\i] \x\y in {-1/-1,1/-1,0/-2}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+\foreach \u \v in {
+s/1%
+,1/2%
+,1/3%
+}{
+	\draw[->] (\u) -- (\v);
+}
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+
 \begin{definition}[חתך]
 חתך בגרף,
 $G = (V, E)$,
@@ -120,21 +158,21 @@ $uv$
 	\end{enumerate}
 \end{enumerate}
 
-\begin{observation}
+\begin{claim}
 בסיום ריצת האלגוריתם
 $U$
 מכילה את כל הצמתים הישיגים מ-$s$
-\end{observation}
+\end{claim}
 \begin{proof}
 בשלילה, בוחרים מסלול מ-$s$ לצומת $v$ שלא נכנס ל-%
 $U$
 ומסתכלים על הצומת הראשון במסלול שלא נכנס.
 \end{proof}
-\begin{observation}
+\begin{claim}
 בכל שלב בריצת האלגוריתם
 $T$
 עץ קשיר
-\end{observation}
+\end{claim}
 \begin{proof}
 באינדוקציה על צעד האלגוריתם.
 \end{proof}
@@ -177,53 +215,31 @@ $dist_T(s, v) = dist_G(s, v)$.
 \begin{center}
 \begin{tikzpicture}[every node/.style={circle, draw, minimum width=5mm}]
 
-
 \node(s) at(0,0) {s};
-\foreach [count=\i] \x\y in {
-	1/1
-	,-1/1
-	,1/-1
-	,-1/-1
-	,-2/0
-	,2/0	
-}{
+\foreach [count=\i] \x\y in {-1/-1,1/-1,0/-2}{
 	\node(\i) at(\x,\y) {\i};
 }
 
 \foreach \u \v in {
 s/1%
-,s/6%
-,6/3%
-,1/6%
 ,s/2%
 ,1/2%
-,2/5%
-,5/4%
-,4/3%
+,1/3%
+,2/3%
 }{
 	\draw (\u) -- (\v);
 }
 
 \begin{scope}[xshift=6cm]
 \node(s) at(0,0) {s};
-\foreach [count=\i] \x\y in {
-	1/1
-	,-1/1
-	,1/-1
-	,-1/-1
-	,-2/0
-	,2/0	
-}{
+\foreach [count=\i] \x\y in {-1/-1,1/-1,0/-2}{
 	\node(\i) at(\x,\y) {\i};
 }
 
 \foreach \u \v in {
 s/1%
-,s/6%
-,6/3%
 ,s/2%
-,2/5%
-,5/4%
+,1/3%
 }{
 	\draw[->] (\u) -- (\v);
 }
@@ -245,8 +261,8 @@ $d(s) \leftarrow 0$
 \item
 עבור כל קשת 
 $uv$
-כך ש-%
-$d(u) = i, v \notin U$
+שחוצה את $U$ ו-%
+$d(u) = i$
 	\begin{enumerate}
 	\item
 	$U \leftarrow U \cup \{v\}, T \leftarrow T \cup \{uv\}$
@@ -257,20 +273,92 @@ $d(u) = i, v \notin U$
 $i \leftarrow i+1$
 \end{enumerate}
 
-\begin{observation}
+\begin{claim}
 בסוף ריצת האלגוריתם לא קיימת קשת 
 $uv$
-כך ש-%
-\end{observation}
+שחוצה את $U$.
+\end{claim}
+\begin{proof}
+בשלילה, אם קיימת ו-%
+$d(u) = i$
+אז באיטרציה ה-%
+$i$
+היינו מוסיפים אותה
+\end{proof}
 
+\begin{corollary}
+BFS
+הוא מקרה פרטי של האלגוריתם הכללי
+\end{corollary}
 
+\begin{claim}
+לכל
+$v \in V$
+מתקיים
+$dist_T(s, v) = d(v)$
+\end{claim}
+\begin{proof}
+באינדוקציה על צעד האלגוריתם
+\end{proof}
 
+\begin{claim}
+לכל
+$v \in V$
+מתקיים
+$dist_T(s, v) \leq dist_G(s,v)$
+\end{claim}
+\begin{proof}
+באינדוקציה על צעד האלגוריתם
+\end{proof}
 
+\begin{theorem}
+לכל
+$v \in V$
+מתקיים
+$d(v) \leq dist_G(s,v)$
+\end{theorem}
 
 
 
 \subsection*{DFS}
 
+\begin{center}
+\begin{tikzpicture}[every node/.style={circle, draw, minimum width=5mm}]
+
+\node(s) at(0,0) {s};
+\foreach [count=\i] \x\y in {-1/-1,1/-1,0/-2}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+\foreach \u \v in {
+s/1%
+,s/2%
+,1/2%
+,1/3%
+,2/3%
+}{
+	\draw (\u) -- (\v);
+}
+
+\begin{scope}[xshift=6cm]
+\node(s) at(0,0) {s};
+\foreach [count=\i] \x\y in {-1/-1,1/-1,0/-2}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+\foreach \u \v in {
+s/1%
+,1/2%
+,2/3%
+}{
+	\draw[->] (\u) -- (\v);
+}
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\subsection*{סיכום}
 \begin{example}[פאזל הזזה]
 נתון לוח משחק בגודל 
 $n \times m$
