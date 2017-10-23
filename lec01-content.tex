@@ -184,7 +184,10 @@ $T$
 
 
 
-\subsection*{BFS}
+\subsection*{%
+חיפוש לרוחב - 
+\textenglish{Breadth First Search (BFS)}
+}
 \begin{definition}[מרחק]
 בהינתן גרף 
 $G = (V, E)$,
@@ -255,24 +258,28 @@ $U \leftarrow \{s\}, T \leftarrow \emptyset, i \leftarrow 0$,
 לכל 
 $v \in V$
 מציבים
-$p(v) \leftarrow nil, d(v) \leftarrow \infty$
-\item
+$p(v) \leftarrow nil, d(v) \leftarrow \infty$,
 $d(s) \leftarrow 0$
-\item
-עבור כל קשת 
-$uv$
-שחוצה את $U$ ו-%
+\item 
+כל עוד קיים צומת $u$ כך ש-%
 $d(u) = i$
-	\begin{enumerate}
+\label{item:bfs:while}
+\begin{enumerate}
+	\item 
+	כל עוד ישנה קשת 
+	$uv$
+	שחוצה את $U$ ו-%
+	$d(u) = i$
+		\begin{enumerate}
+		\item
+		$U \leftarrow U \cup \{v\}, T \leftarrow T \cup \{uv\}$
+		\item
+		$p(v) = u, d(v) = i + 1$
+		\end{enumerate}
 	\item
-	$U \leftarrow U \cup \{v\}, T \leftarrow T \cup \{uv\}$
-	\item
-	$p(v) = u, d(v) = i + 1$
+	$i \leftarrow i+1$
 	\end{enumerate}
-\item
-$i \leftarrow i+1$
 \end{enumerate}
-
 \begin{claim}
 בסוף ריצת האלגוריתם לא קיימת קשת 
 $uv$
@@ -317,10 +324,77 @@ $v \in V$
 מתקיים
 $d(v) \leq dist_G(s,v)$
 \end{theorem}
+\\
+\noindent
+מהו זמן הריצה של BFS ? קשה להגיד כי לא הגדרנו כיצד מתבצעת הבדיקה בשלב 
+\ref{item:bfs:while}
+של האלגוריתם. ניתן לממש שלב זה על ידי תור באופן הבא:
+\begin{enumerate}
+\item
+אתחול:
+$U \leftarrow \{s\}, T \leftarrow \emptyset, i \leftarrow 0$, 
+לכל 
+$v \in V$
+מציבים
+$p(v) \leftarrow nil, d(v) \leftarrow \infty$,
+$d(s) \leftarrow 0, Q \leftarrow (s)$
+\item 
+כל עוד התור לא ריק וראש התור, $u$, מקיים
+$d(u) = i$
+\begin{enumerate}
+	\item
+	כל עוד ישנה קשת 
+	$uv$
+	שחוצה את $U$
+		\begin{enumerate}
+		\item
+		$U \leftarrow U \cup \{v\}, T \leftarrow T \cup \{uv\}$
+		\item
+		$p(v) = u, d(v) = i + 1$
+		\item
+		\textenglish{Q.enqueue($v$)}
+		\end{enumerate}
+	\item
+	$i \leftarrow i+1$
+	\end{enumerate}
+\end{enumerate}
+\\
+\noindent
+נשים לב שבמימוש הנ"ל כל צומת נכנסת ויוצאת מהתור לכל היותר פעם אחת 
+ובנוסף כל קשת נבדקת לכל היותר פעם אחת ולכן זמן הריצה הוא 
+$O(|V| + |E|)$
 
 
 
-\subsection*{DFS}
+
+
+
+
+
+
+
+
+
+
+\subsection*{%
+חיפוש לעומק - 
+\textenglish{Depth First Search (DFS)}
+}
+נגדיר
+\textenglish{dfs($U, T, u$)}
+\begin{enumerate}
+\item
+אם קיימת קשת 
+$uv$
+שחוצה את $U$ אז
+	\begin{enumerate}
+	\item
+	$U \leftarrow U \cup \{v\}, T \leftarrow T \cup \{uv\}, p(v) \leftarrow u$
+	\item
+	$\text{dfs}(U, T, v)$
+	\end{enumerate}
+\end{enumerate}
+
 
 \begin{center}
 \begin{tikzpicture}[every node/.style={circle, draw, minimum width=5mm}]
