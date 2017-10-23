@@ -90,7 +90,7 @@
 \item 
 אתחול:
 $T \leftarrow \emptyset$, 
-$V' \leftarrow \{s\}$
+$U \leftarrow \{s\}$
 ולכל 
 $v \in V$
 מציבים 
@@ -99,29 +99,29 @@ $p(v) \leftarrow \text{nil}$
 כל עוד יש קשת
 $uv$
 עם
-$u \in V', v \notin V'$
+$u \in U, v \notin U$
 	\begin{enumerate}
 	\item
-	$V' \leftarrow V' \cup \{v\}$,
+	$U \leftarrow U \cup \{v\}$,
 	$T \leftarrow T \cup \{uv\}$,
 	$p(v) \leftarrow u$
 	\end{enumerate}
 \end{enumerate}
 
 \begin{observation}
-בסיום ריצת ריצת האלגוריתם הכללי 
-$V'$
+בסיום ריצת ריצת האלגוריתם
+$U$
 מכילה את כל הצמתים הישיגים מ-$s$
 \end{observation}
 \begin{proof}
 בשלילה, בוחרים מסלול מ-$s$ לצומת $v$ שלא נכנס ל-%
-$V'$
+$U$
 ומסתכלים על הצומת הראשון במסלול שלא נכנס.
 \end{proof}
 \begin{observation}
-בסיום ריצת ריצת האלגוריתם הכללי 
-$V'$
-אינה מכילה צמתים  שלא ישיגים מ-$s$
+בכל שלב בריצת האלגוריתם
+$T$
+עץ קשיר
 \end{observation}
 \begin{proof}
 באינדוקציה על צעד האלגוריתם.
@@ -130,7 +130,111 @@ $V'$
 בסיום ריצת האלגוריתם הכללי $T$ הוא עץ שפורש את כל הצמתים הישיגים מ-$s$
 \end{theorem}
 
+
+
+
+
 \subsection*{BFS}
+\textbf{קלט:}
+גרף $G$ (מכוון או לא) וצומת מקור $s$.
+\\
+\textbf{מטרה:}
+למצוא תת עץ, $T$, שפורש את כל הצמתים שישיגים מ-$s$ כך שלכל צומת 
+$v \in V$
+מתקיים
+$dist_T(s, v) = dist_G(s, v)$.
+\\
+למשל:
+\begin{center}
+\begin{tikzpicture}[every node/.style={circle, draw, minimum width=5mm}]
+
+
+\node(s) at(0,0) {s};
+\foreach [count=\i] \x\y in {
+	1/1
+	,-1/1
+	,1/-1
+	,-1/-1
+	,-2/0
+	,2/0	
+}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+\foreach \u \v in {
+s/1%
+,s/6%
+,6/3%
+,1/6%
+,s/2%
+,1/2%
+,2/5%
+,5/4%
+,4/3%
+}{
+	\draw (\u) -- (\v);
+}
+
+\begin{scope}[xshift=6cm]
+\node(s) at(0,0) {s};
+\foreach [count=\i] \x\y in {
+	1/1
+	,-1/1
+	,1/-1
+	,-1/-1
+	,-2/0
+	,2/0	
+}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+\foreach \u \v in {
+s/1%
+,s/6%
+,6/3%
+,s/2%
+,2/5%
+,5/4%
+}{
+	\draw[->] (\u) -- (\v);
+}
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+\item
+אתחול:
+$U \leftarrow \{s\}, T \leftarrow \emptyset, i \leftarrow 0$, 
+לכל 
+$v \in V$
+מציבים
+$p(v) \leftarrow nil, d(v) \leftarrow \infty$
+\item
+$d(s) \leftarrow 0$
+\item
+עבור כל קשת 
+$uv$
+כך ש-%
+$d(u) = i, v \notin U$
+	\begin{enumerate}
+	\item
+	$U \leftarrow U \cup \{v\}, T \leftarrow T \cup \{uv\}$
+	\item
+	$p(v) = u, d(v) = i + 1$
+	\end{enumerate}
+\item
+$i \leftarrow i+1$
+\end{enumerate}
+
+
+
+
+
+
+
+
 
 \subsection*{DFS}
 
