@@ -86,6 +86,19 @@
 \\
 \textbf{מטרה:}
 למצוא תת עץ שפורש את כל הצמתים שישיגים מ-$s$.
+\begin{definition}[חתך]
+חתך בגרף,
+$G = (V, E)$,
+הוא תת קבוצה של צמתים. 
+$S \subseteq V$
+נאמר שקשת 
+$uv \in E$
+\emph{חוצה}
+את החתך $S$ אם
+$u \in S$
+ו-%
+$v \notin S$.
+\end{definition}
 \begin{enumerate}
 \item 
 אתחול:
@@ -98,8 +111,7 @@ $p(v) \leftarrow \text{nil}$
 \item
 כל עוד יש קשת
 $uv$
-עם
-$u \in U, v \notin U$
+שחוצה את $U$
 	\begin{enumerate}
 	\item
 	$U \leftarrow U \cup \{v\}$,
@@ -109,7 +121,7 @@ $u \in U, v \notin U$
 \end{enumerate}
 
 \begin{observation}
-בסיום ריצת ריצת האלגוריתם
+בסיום ריצת האלגוריתם
 $U$
 מכילה את כל הצמתים הישיגים מ-$s$
 \end{observation}
@@ -135,6 +147,23 @@ $T$
 
 
 \subsection*{BFS}
+\begin{definition}[מרחק]
+בהינתן גרף 
+$G = (V, E)$,
+נגדיר את 
+\emph{המרחק}
+בין שני צמתים 
+$u,v \in V$,
+ונסמנו 
+$dist_G(u,v)$,
+כמספר הקשתות המינימלי במסלול מ-$u$ ל-$v$.
+\end{definition}
+\noindent
+\textbf{הערה:}
+כאשר ברור על איזה גרף מדובר נסתפק בסימון 
+$dist(u,v)$.
+\vspace{5mm}
+\\
 \textbf{קלט:}
 גרף $G$ (מכוון או לא) וצומת מקור $s$.
 \\
@@ -228,7 +257,11 @@ $d(u) = i, v \notin U$
 $i \leftarrow i+1$
 \end{enumerate}
 
-
+\begin{observation}
+בסוף ריצת האלגוריתם לא קיימת קשת 
+$uv$
+כך ש-%
+\end{observation}
 
 
 
