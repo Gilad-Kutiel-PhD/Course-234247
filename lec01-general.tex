@@ -1,0 +1,111 @@
+\textbf{קלט:}
+גרף $G$ (מכוון או לא) וצומת מקור $s$.
+\\
+\textbf{מטרה:}
+למצוא תת עץ שפורש את כל הצמתים שישיגים מ-$s$.
+\\
+למשל:
+\begin{center}
+\begin{tikzpicture}[every node/.style={circle, draw, minimum width=5mm}]
+
+\node(s) at(0,0) {s};
+\foreach [count=\i] \x\y in {-1/-1,1/-1,0/-2}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+\foreach \u \v in {
+s/1%
+,s/2%
+,1/2%
+,1/3%
+,2/3%
+}{
+	\draw (\u) -- (\v);
+}
+
+\begin{scope}[xshift=6cm]
+\node(s) at(0,0) {s};
+\foreach [count=\i] \x\y in {-1/-1,1/-1,0/-2}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+\foreach \u \v in {
+s/1%
+,1/2%
+,1/3%
+}{
+	\draw[->] (\u) -- (\v);
+}
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\begin{definition}[חתך]
+חתך בגרף,
+$G = (V, E)$,
+הוא תת קבוצה של צמתים. 
+$S \subseteq V$
+נאמר שקשת 
+$uv \in E$
+\emph{חוצה}
+את החתך $S$ אם
+$u \in S$
+ו-%
+$v \notin S$.
+\end{definition}
+\begin{enumerate}
+\item 
+אתחול:
+$T \leftarrow \emptyset$, 
+$U \leftarrow \{s\}$
+ולכל 
+$v \in V$
+מציבים 
+$p(v) \leftarrow \text{nil}$
+\item
+כל עוד יש קשת
+$uv$
+שחוצה את $U$
+	\begin{enumerate}
+	\item
+	$U \leftarrow U \cup \{v\}$,
+	$T \leftarrow T \cup \{uv\}$,
+	$p(v) \leftarrow u$
+	\end{enumerate}
+\end{enumerate}
+
+\begin{claim}
+בסיום ריצת האלגוריתם
+$U$
+מכילה את כל הצמתים הישיגים מ-$s$
+\end{claim}
+\begin{proof}
+בשלילה, בוחרים מסלול מ-$s$ לצומת $v$ שלא נכנס ל-%
+$U$
+ומסתכלים על הצומת הראשון במסלול שלא נכנס.
+\end{proof}
+\begin{claim}
+בכל שלב בריצת האלגוריתם
+$T$
+עץ קשיר.
+בנוסף המסלול מצומת $u$ ל-$s$ הוא שרשור של הקשת 
+$(u, p(u))$
+והמסלול מ-%
+$p(u)$
+ל-%
+$s$
+\end{claim}
+\begin{proof}
+באינדוקציה על צעד האלגוריתם.
+\end{proof}
+\begin{theorem}
+בסיום ריצת האלגוריתם הכללי $T$ הוא עץ שפורש את כל הצמתים הישיגים מ-$s$
+\end{theorem}
+
+
+
+
+
+
+
