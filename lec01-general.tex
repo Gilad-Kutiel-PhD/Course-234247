@@ -1,15 +1,27 @@
 \textbf{קלט:}
-גרף $G$ (מכוון או לא) וצומת מקור $s$.
+גרף 
+$G = (V, E)$
+(מכוון או לא) וצומת מקור $s$.
 \\
 \textbf{מטרה:}
-למצוא תת עץ שפורש את כל הצמתים שישיגים מ-$s$.
+למצוא עץ עם שורש $s$,
+$T = (U, F)$, 
+$U \subseteq V$, 
+$F \subseteq E$
+כך ש-$U$ היא קבוצת הצמתים שישיגים מ-$s$.
+בנוסף, לכל צומת
+$u \in U$
+נרצה ש-%
+$p(u)$
+יצביע לאבא של 
+$u$.
 \\
 למשל:
 \begin{center}
 \begin{tikzpicture}[every node/.style={circle, draw, minimum width=5mm}]
 
 \node(s) at(0,0) {s};
-\foreach [count=\i] \x\y in {-1/-1,1/-1,0/-2}{
+\foreach [count=\i] \x\y in {-1/-1,1/-1,0/-2,1/-2}{
 	\node(\i) at(\x,\y) {\i};
 }
 
@@ -34,7 +46,7 @@ s/1%
 ,1/2%
 ,1/3%
 }{
-	\draw[->] (\u) -- (\v);
+	\draw[<-] (\u) -- (\v);
 }
 \end{scope}
 
@@ -50,9 +62,7 @@ $S \subseteq V$
 $uv \in E$
 \emph{חוצה}
 את החתך $S$ אם
-$u \in S$
-ו-%
-$v \notin S$.
+$|\{u,v\} \cap S| = 1$.
 \end{definition}
 
 \begin{center}
@@ -101,7 +111,8 @@ $p(v) \leftarrow \text{nil}$
 \item
 כל עוד יש קשת
 $uv$
-שחוצה את $U$
+שחוצה את $U$ 
+($u \in U$)
 	\begin{enumerate}
 	\item
 	$U \leftarrow U \cup \{v\}$,
