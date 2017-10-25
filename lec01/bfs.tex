@@ -9,16 +9,15 @@ $u,v \in V$,
 $dist_G(u,v)$,
 כמספר הקשתות המינימלי במסלול מ-$u$ ל-$v$.
 \end{definition}
-\noindent
 \textbf{הערה:}
 כאשר ברור על איזה גרף מדובר נסתפק בסימון 
 $dist(u,v)$.
+
 \vspace{5mm}
-\\
 \textbf{קלט:}
 גרף $G$ (מכוון או לא) וצומת מקור $s$.
 \\
-\textbf{מטרה:}
+\textbf{פלט:}
 למצוא עץ עם שורש $s$,
 $T = (U, F)$, 
 $U \subseteq V$, 
@@ -33,7 +32,7 @@ $d(u) = dist(s,u)$
 $p(u)$
 יצביע לאבא של 
 $u$.
-\\
+
 למשל:
 \begin{center}
 \begin{tikzpicture}[every node/.style={circle, draw, minimum width=5mm}]
@@ -138,8 +137,6 @@ $v \in V$
 מתקיים
 $d(v) = dist_T(s,v) = dist_G(s,v)$
 \end{theorem}
-\\
-\noindent
 מהו זמן הריצה של BFS ? קשה להגיד כי לא הגדרנו כיצד מתבצעת הבדיקה בשלב 
 \ref{item:bfs:while}
 של האלגוריתם. 
@@ -175,8 +172,6 @@ $uv$
 		\end{enumerate}
 	\end{enumerate}
 \end{enumerate}
-\\
-\noindent
 נשים לב שבמימוש הנ"ל כל צומת נכנסת ויוצאת מהתור לכל היותר פעם אחת 
 ובנוסף כל קשת נבדקת לכל היותר פעם אחת ולכן זמן הריצה הוא 
 $O(|V| + |E|)$

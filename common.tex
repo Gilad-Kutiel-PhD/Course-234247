@@ -2,29 +2,26 @@
 \usepackage[margin=2.5cm, top=2cm, bottom=1.5cm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{amsmath,amssymb,mathtools,amsthm}
-\usepackage{polyglossia,enumitem}
 \usepackage{color}
 \usepackage{tikz}
 \usepackage{csquotes}
 \usepackage{listings}
-
-% HEADER
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{234247 - אלגוריתמים 1}
-\chead{}
-\lhead{\texttt{http://bit.ly/2i0STXd}}
-\setlength{\headsep}{18pt}
-\fancyfoot[OC]{\thepage}
+\usepackage{polyglossia,enumitem}
 
 % HEBREW
 \setmainlanguage{hebrew}
 \newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
+\let\hebrewfonttt\ttfamily
 \setlist[itemize,1]{label={\fontfamily{cmr}\fontencoding{T1}\selectfont\textbullet}}
 \setotherlanguage{english}
-\renewcommand*{\proofname}{הוכחה}
+
+% HEADER
+\pagestyle{fancy}
+\rhead{234247 - אלגוריתמים 1}
+\lhead{\texttt{http://bit.ly/2i0STXd}}
 
 % THEOREMS
+\renewcommand*{\proofname}{הוכחה}
 \newtheorem{example}{דוגמה}
 \newtheorem{definition}{הגדרה}
 \newtheorem{claim}{טענה}

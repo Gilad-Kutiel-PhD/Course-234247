@@ -6,7 +6,7 @@
 על ידי רשימת שכנויות
 \end{enumerate}
 אם לא מצוין אחרת, נניח שהגרף מיוצג על ידי רשימת שכנויות.
-\\
+
 למשל את הגרף:
 \begin{center}
 \begin{tikzpicture}[every node/.style={default node}]
@@ -24,12 +24,13 @@
 	,1/4%
 	,3/4%
 }{
-	\draw[->] (\u) -- (\v)
+	\draw[->] (\u) -- (\v);
 }
 \end{tikzpicture}
 \end{center}
 ניתן לייצג על ידי המטריצה 
 \begin{center}
+$
 \begin{bmatrix}
 0 & 1 & 0 & 1
 \\
@@ -39,6 +40,7 @@
 \\
 0 & 0 & 0 & 0
 \end{bmatrix}
+$
 \end{center}
 וגם על ידי רשימת שכנויות:
 \begin{center}

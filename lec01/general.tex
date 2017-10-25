@@ -3,7 +3,7 @@
 $G = (V, E)$
 (מכוון או לא) וצומת מקור $s$.
 \\
-\textbf{מטרה:}
+\textbf{פלט:}
 למצוא עץ עם שורש $s$,
 $T = (U, F)$, 
 $U \subseteq V$, 
@@ -15,7 +15,8 @@ $u \in U$
 $p(u)$
 יצביע לאבא של 
 $u$.
-\\
+
+
 למשל:
 \begin{center}
 \begin{tikzpicture}[every node/.style={circle, draw, minimum width=5mm}]
@@ -52,6 +53,7 @@ s/1%
 
 \end{tikzpicture}
 \end{center}
+
 
 \begin{definition}[חתך]
 חתך בגרף,
@@ -98,7 +100,6 @@ $|\{u,v\} \cap S| = 1$.
 \end{tikzpicture}
 \end{center}
 
-
 \begin{enumerate}
 \item 
 אתחול:
@@ -131,6 +132,7 @@ $U$
 $U$
 ומסתכלים על הצומת הראשון במסלול שלא נכנס.
 \end{proof}
+
 \begin{claim}
 בכל שלב בריצת האלגוריתם
 $T$
@@ -142,16 +144,7 @@ $p(u)$
 ל-%
 $s$
 \end{claim}
+
 \begin{proof}
 באינדוקציה על צעד האלגוריתם.
 \end{proof}
-\begin{theorem}
-בסיום ריצת האלגוריתם הכללי $T$ הוא עץ שפורש את כל הצמתים הישיגים מ-$s$
-\end{theorem}
-
-
-
-
-
-
-
