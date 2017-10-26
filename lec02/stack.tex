@@ -1,0 +1,91 @@
+\begin{enumerate}
+\item
+אתחול:
+\begin{enumerate}
+\item
+$U \leftarrow \{s\}$
+\item
+$F \leftarrow \emptyset$
+\item
+לכל 
+$v \in V$
+מציבים
+$p(v) \leftarrow nil, \alpha(v) \leftarrow -1$
+\item
+$\alpha(s) \leftarrow 0$,
+\item
+$i \leftarrow 0$
+\item
+$S \leftarrow (s)$
+\end{enumerate}
+
+\item
+כל עוד המחסנית לא ריקה
+\begin{enumerate}
+	\item
+	$u \leftarrow S.top()$
+	\item 
+	אם קיימת קשת 
+	$uv$
+	שחוצה את $U$ 
+	($u \in U$)
+		\begin{enumerate}
+		\item
+		$U \leftarrow U \cup \{v\}, F \leftarrow F \cup \{uv\}$
+		\item
+		$p(v) \leftarrow u$
+		\item
+		$\alpha(v) \leftarrow i$
+		\item
+		$i \leftarrow i + 1$
+		\item
+		$S.push(v)$
+		\end{enumerate}
+	\item
+	אחרת 
+	$S.pop()$
+	\end{enumerate}
+\end{enumerate}
+
+\begin{claim}
+במימוש בעזרת מחסנית, כל עוד קיימת קשת שחוצה את $U$, המחסנית לא ריקה
+\end{claim}
+\begin{proof}
+באינדוקציה על צעד האלגוריתם
+\end{proof}
+\begin{claim}
+המחסנית מונוטונית עולה ביחס ל-%
+$\alpha$
+\end{claim}
+\begin{proof}
+באינדוקציה על צעד האלגוריתם
+\end{proof}
+\begin{claim}
+\label{claim:path}
+הצמתים במחסנית מהווים מסלול מ-$s$ לראש המחסנית ב-$T$
+\end{claim}
+\begin{proof}
+באינדוקציה על צעד האלגוריתם
+\end{proof}
+\begin{corollary}
+עבור שני צמתים $u$ ו-$v$, $v$ צאצא של $u$ בעץ אם ורק אם $u$ נמצא במחסנית כאשר $v$ מוכנס 
+אליה.
+\end{corollary}
+\begin{proof}
+כיוון ראשון מיידי מטענה
+\ref{claim:path}.
+\\
+כיוון שני גם מטענה 
+\ref{claim:path}
+כאשר האבחנה היא שבעץ, צומת $u$ הוא אב קדמון של $v$ אם ורק אם הוא נמצא על המסלול מ-$s$
+ל-$v$
+\end{proof}
+\begin{lemma}[המסלול הלבן]
+אם כאשר צומת $u$ מוכנס למחסנית, קיים ממנו מסלול לצומת $v$ כך שכל הצמתים במסלול אינם ב-%
+$U$
+אז $v$ יהיה צאצא של $u$ בעץ ה-DFS
+\end{lemma}
+\begin{proof}
+באינדוקציה על אורך המסלול, 
+כאשר האבחנה היא שכאשר הצומת הראשון במסלול מוכנס למחסנית, $u$ עדיין שם.
+\end{proof}
