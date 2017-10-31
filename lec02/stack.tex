@@ -37,13 +37,16 @@ $S \leftarrow (s)$
 		\item
 		$\alpha(v) \leftarrow i$
 		\item
-		$i \leftarrow i + 1$
-		\item
 		$S.push(v)$
 		\end{enumerate}
 	\item
 	אחרת 
-	$S.pop()$
+	\begin{enumerate}
+		\item $u \leftarrow S.pop()$
+		\item $\beta(u) = i$
+	\end{enumerate}
+	\item
+	$i \leftarrow i + 1$
 	\end{enumerate}
 \end{enumerate}
 
