@@ -1,0 +1,255 @@
+מעתה נעסוק רק בגרפים לא מכוונים וקשירים (בלי הגבלת הכלליות).
+\begin{definition}[צומת הפרדה]
+צומת $v$ יקרא 
+\underline{צומת הפרדה}
+אם
+$G[V \setminus \{v\}]$
+אינו קשיר
+\end{definition}
+\textbf{דוגמה:}
+צומת 3 בגרף הבא הוא צומת הפרדה (ורק הוא)
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}]
+\foreach[count=\i] \x \y in {0/0, -1/-1, 1/-1, 0/-2, 2/-2}{
+	\node(\i) at(\x, \y) {\i};
+}
+
+\foreach \u \v in {%
+	1/2%
+	,1/3%
+	,2/3%
+	,3/4%
+	,3/5%
+}{
+	\draw (\u) -- (\v);
+}
+\end{tikzpicture}
+\end{center}
+
+מה המשמעות של צמתי הפרדה ? ברשת כבישים ? רשת תקשורת ? רשת חברתית ?
+
+אלגוריתם טריוויאלי למציאת צמתי הפרדה:
+\begin{enumerate}
+\item
+עבור כל צומת $v$
+	\begin{enumerate}
+	\item
+	מחק את $v$ מ-$G$
+	\item
+	בדוק אם $G$ קשיר
+	\end{enumerate}
+\end{enumerate}
+
+מה הסיבוכיות ? נרצה לעשות יותר טוב.
+
+\textbf{שאלה:}
+מי הם צמתי ההפרדה בעצים?
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}]
+\foreach[count=\i] \x \y in {0/0, -1/-1, 1/-1, 0/-2, 2/-2}{
+	\node(\i) at(\x, \y) {\i};
+}
+
+\foreach \u \v in {%
+	1/2%
+	,1/3%
+	,3/4%
+	,3/5%
+}{
+	\draw (\u) -- (\v);
+}
+\end{tikzpicture}
+\end{center}
+בעץ מושרש, $T$, נסמן ב-%
+$T_v$
+את תת העץ ששורשו הוא $v$. כלומר תת העץ שמכיל את $v$ ואת כל צאצאיו.
+
+
+נסתכל על גרף לא מכוון כאיחוד של עץ DFS וקבוצת קשתות אחוריות.
+מה יכול לקרות כאשר מוציאים קשת שאינו עלה מהגרף ?
+
+למשל מה יקרה אם נסיר את צומת 5 מהגרף הבא ?
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}]
+\foreach[count=\i] \x \y in {0/0, -1/-1, 1/-1, 0/-2, 2/-2}{
+	\node(\i) at(\x, \y) {\i};
+}
+
+\foreach \u \v in {%
+	1/2%
+	,1/3%
+	,3/4%
+	,3/5%
+}{
+	\draw (\u) -- (\v);
+}
+
+\begin{scope}[
+every node/.style={
+	regular polygon
+	,regular polygon sides=3
+	,minimum height=2cm
+	,draw
+}]
+\node(6) at(1, -4) {6};
+\node(7) at(3, -4) {7};
+\end{scope}
+
+\draw (5) -- (6.north);
+\draw (5) -- (7.north);
+\draw[dashed] (7.north east) to[out=45, in=0] (3);
+\end{tikzpicture}
+\end{center}
+
+קל להשתכנע שתת העץ 7 ישאר מחובר לגרף בעוד שתת העץ 6 יתנתק מהגרף.
+\begin{definition}[קשת עוקפת]
+נגיד שקשת בגרף מצאצא של $u$ לאב קדמון של $u$ (שניהם לא $u$ עצמו) עוקפת את $u$
+\end{definition}
+
+\begin{definition}[בן מפריד]
+צומת $v$ עם אבא $u$ יקרא בן מפריד אם לא קיימת ב-%
+$T_v$
+קשת שעוקפת את $u$
+\end{definition}
+\begin{claim}
+צומת $u$ בעץ DFS שאינו עלה הוא מפריד אם ורק אם  יש לו בן מפריד.
+בפרט שורש העץ הוא צומת מפריד אמ"מ הוא אינו עלה (יש לו יותר מבן אחד)
+\end{claim}
+\begin{proof}
+נזכיר שבגרף אין קשתות חוצות, כמו כן נניח ש-$u$ אינו השורש (ניתן להוכיח נכונות לגבי השורש בנפרד)
+
+כיוון ראשון: נניח שמ-%
+$T_v$
+אין קשת לאב קדמון של $u$ אזי כל מסלול מהאבא של $u$ ל-%
+$T_v$
+חייב לעבור ב-$u$.
+
+כיוון שני: נניח שלכל בן $v$ של $u$ קיימת קשת עוקפת מ-%
+$T_v$,
+$wx$
+נשים לב שהוספת הקשת $wx$ סוגרת מעגל שמכיל את הקשת $uv$ ולכן אם נסיר את הקשת $uv$
+נקבל שוב עץ, נחזור על הפעולה הזאת לכל בן של $u$ ולבסוף נסיר את $u$ מהעץ. 
+קיבלנו שוב עץ ולכן $u$ אינו צומת הפרדה.
+
+\end{proof}
+
+\begin{definition}
+נגדיר
+$$
+L(u) \defeq \min_{vw \in E: v \in T_u} \alpha(w)
+$$
+\end{definition}
+כלומר הצומת עם ערך $\alpha$ מינימלי שהוא שכן של 
+$T_u$.
+
+\textbf{דוגמה:}
+מה ערכי $L$ בגרף הבא ?
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}]
+\foreach[count=\i] \x \y in {
+0/0
+	,-1/-1
+	,1/-1
+		,2/-2
+		,0/-2
+			,-1/-3
+			,1/-3
+				,0/-4
+				,2/-4
+}{
+	\node(\i) at(\x, \y) {\i};
+}
+
+\foreach \u \v in {%
+	1/2%
+	,1/3%
+	,3/4%
+	,3/5%
+	,5/6%	
+	,5/7%
+	,7/8%	
+	,7/9%				
+}{
+	\draw (\u) -- (\v);
+}
+
+\foreach \u \v in {%
+	8/5%
+	,5/1%	
+}{
+	\draw[dashed] (\u) -- (\v);
+}
+
+\draw[dashed] (9) to[out=45, in=0] (3);
+
+\end{tikzpicture}
+\end{center}
+
+נסמן ב-%
+$C(u)$
+את קבוצת הבנים של $u$ ב-$T$.
+\begin{observation}
+צומת $u$ הוא צומת מפריד אמ"מ 
+$\displaystyle\max_{v \in C(u)} L(v) \ge \alpha(u)$
+\end{observation}
+
+כלומר, כדי למצוא אלגוריתמית את צמתי ההפרדה כל שעלינו לעשות הוא לחשב את ערכי $L$.
+נשים לב  שמתקיימת הנוסחה (הרקורסיבית) הבאה:
+$$
+L(u) = \min
+\begin{cases}
+\displaystyle\min_{uv \in E} \alpha(v)
+\\
+\displaystyle\min_{v \in C(u)} L(v)
+\end{cases}
+$$
+
+
+
+
+\newpage
+נעדכן את המימוש של DFS כך שבריצת האלגוריתם נחשב גם את ערכי $L$
+\begin{enumerate}
+\item
+אתחול:
+$\ldots$
+\colorbox{yellow}{
+לכל 
+$v \in V$
+מציבים
+$L(v) \leftarrow \infty$
+}
+\item
+כל עוד המחסנית לא ריקה
+\begin{enumerate}
+	\item
+	$u \leftarrow S.top()$
+	\item 
+	אם קיימת קשת 
+	$uv$
+	שחוצה את $U$ 
+	($u \in U$)
+		\begin{enumerate}
+		\item
+		$U \leftarrow U \cup \{v\}, F \leftarrow F \cup \{uv\}$
+		\item
+		$p(v) \leftarrow u$
+		\item
+		$\alpha(v) \leftarrow i$
+		\item
+		$S.push(v)$
+		\end{enumerate}
+	\item
+	אחרת 
+	\begin{enumerate}
+		\item 
+		\colorbox{yellow}{$L(u) \leftarrow \displaystyle\min_{uv \in E} \alpha(v)$}
+		\item \colorbox{yellow}{$L(p(u)) \leftarrow \min\{L(u), L(p(u))\}$}
+		\item $u \leftarrow S.pop()$
+		\item $\beta(u) \leftarrow i$
+	\end{enumerate}
+	\item
+	$i \leftarrow i + 1$
+	\end{enumerate}
+\end{enumerate}
+

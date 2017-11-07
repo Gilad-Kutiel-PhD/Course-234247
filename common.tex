@@ -2,7 +2,7 @@
 \usepackage[margin=2.5cm, top=2cm, bottom=1.5cm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{amsmath,amssymb,mathtools,amsthm}
-\usepackage{color}
+\usepackage{color,soul}
 \usepackage{tikz}
 \usepackage{csquotes}
 \usepackage{listings}
@@ -24,10 +24,14 @@
 \renewcommand*{\proofname}{הוכחה}
 \newtheorem{example}{דוגמה}
 \newtheorem{definition}{הגדרה}
+\newtheorem{observation}{אבחנה}
 \newtheorem{claim}{טענה}
 \newtheorem{lemma}{למה}
 \newtheorem{theorem}{משפט}
 \newtheorem{corollary}{מסקנה}
+
+% COMMANDS
+\newcommand{\defeq}{\vcentcolon=}
 
 % MISC
 \setlength\parindent{0pt}

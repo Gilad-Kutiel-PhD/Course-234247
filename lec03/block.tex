@@ -1,0 +1,162 @@
+\begin{definition}[רכיב אי פריק]
+תת גרף $H$ של $G$ יקרא רכיב אי פריק אם $H$ אינו מכיל צומת מפריד
+\end{definition}
+
+במילים אחרות, $H$ נשאר קשיר גם אחרי הסרת צומת כלשהו ממנו.
+
+\begin{definition}[רכיב אי פריק מקסימלי]
+רכיב אי פריק $H$ של $G$ הוא מקסימלי אם לא קיים רכיב אי פריק אחר של $G$ שמכיל ממש את $H$
+\end{definition}
+
+מעתה כשנדבר על רכיבים אי פריקים נתכוון אך ורק לרכיבים אי פריקים 
+\textbf{מקסימליים}
+.
+
+\textbf{דוגמה:}
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}]
+\foreach[count=\i] \x \y in{0/0, 1/1, 1/-1, 2/0, 3/0, 4/1, 4/-1, 5/1}{
+	\node(\i) at(\x, \y) {\i}:
+}
+\foreach \u \v in {%
+	1/2%
+	,1/3%
+	,2/4%	
+	,3/4%	
+	,4/5%	
+	,5/6%	
+	,5/7%	
+	,6/7%	
+	,6/8%	
+}{
+	\draw (\u) -- (\v);
+}
+
+\draw[dashed]
+(1.west) to[bend left]
+(2.north) to[bend left]
+(4.east) to[bend left]
+(3.south) to[bend left]
+(1.west)
+;
+
+\draw[dashed]
+(4.west) to[out=90, in=90]
+(5.east) to[out=-90, in=-90]
+(4.west) 
+;
+
+\draw[dashed]
+(5.west) to[bend left]
+(6.north) to[out=0,in=0]
+(7.south) to[bend left]
+(5.west) 
+;
+
+\draw[dashed]
+(6.west) to[out=90, in=90]
+(8.east) to[out=-90,in=-90]
+(6.west) 
+;
+
+\end{tikzpicture}
+\end{center}
+
+\begin{claim}
+\label{claim:disjoint}
+לשני רכיבים אי פריקים
+$H_1$
+ו-%
+$H_2$
+צומת אחד משותף לכל היותר
+\end{claim}
+\begin{proof}
+נניח בשלילה שישנם שני רכיבים כאלו שחולקים את הצמתים $u$ ו-$v$.
+נשים לב שלאחר שהסרה של צומת כלשהו כל רכיב בנפרד נשאר קשיר.
+מעבר לכך הרכיבים עדיין חולקים צומת משותף ולכן הרכיב שמתקבל מאיחוד שני הרכיבים גם הוא אי פריק.
+סתירה למקסימליות.
+\end{proof}
+
+\begin{claim}
+הרכיבים האי פריקים מהווים חלוקה של קשתות הגרף
+\end{claim}
+\begin{proof}
+קל לראות שכל קשת מוכלת ברכיב אי פריק אחד לפחות ומטענה 
+\ref{claim:disjoint}
+נובע שגם לכל היותר
+
+\end{proof}
+
+\begin{claim}
+עבור צומת הפרדה $u$ עם בן מפריד $v$, שאר צמתי הרכיב האי פריק שמכיל את $uv$ נמצאים ב-%
+$T_v$
+\end{claim}
+\begin{proof}
+נשים לב ש-$u$ מפריד את 
+$T_v$
+משאר הגרף
+\end{proof}
+נסמן ב-$S$ את קבוצת הבנים המפרידים אז
+\begin{corollary}
+צמתי הרכיב האי פריק שמכיל את $uv$ הוא 
+$T_v \cup \{v\} \setminus \bigcup_{w \in S:w \ne v} T_w$
+\end{corollary}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+נעדכן את המימוש של DFS כך שבריצת האלגוריתם נחשב גם את הרכיבים האי פריקים 
+(נרצה לשמור לכל צומת את מספר הרכיב אליו הוא שייך)
+\begin{enumerate}
+\item
+אתחול:
+$\ldots$
+\colorbox{yellow}{
+$S' \leftarrow (s)$,
+$b \leftarrow 0$,
+לכל צומת 
+$v \in V$
+$B(v) \leftarrow -1$
+}
+\item
+כל עוד המחסנית לא ריקה
+\begin{enumerate}
+	\item
+	$u \leftarrow S.top()$
+	\item 
+	אם קיימת קשת 
+	$uv$
+	שחוצה את $U$ 
+	($u \in U$)
+		\begin{enumerate}
+		\item $\ldots$
+		\item
+		\colorbox{yellow}{$S'.push(v)$}
+		\end{enumerate}
+	\item
+	אחרת 
+	\begin{enumerate}
+		\item $v \leftarrow S.pop()$
+		\item $\beta(v) \leftarrow i$
+
+		\item 
+				\colorbox{yellow}{
+אם $v$ בן מפריד של $u$
+		}
+			\begin{enumerate}
+				\item \colorbox{yellow}{$w \leftarrow S'.pop()$}
+				\item \colorbox{yellow}{
+כל עוד 
+				$w \ne v$
+				}
+					\begin{itemize}
+						\item \colorbox{yellow}{$B(w) = b$}
+						\item \colorbox{yellow}{$w \leftarrow S'.pop()$}
+					\end{itemize}	
+			\end{enumerate}			
+			\item \colorbox{yellow}{$b \leftarrow b + 1$}
+	\end{enumerate}
+	\item
+	$i \leftarrow i + 1$
+	\end{enumerate}
+\end{enumerate}
+
