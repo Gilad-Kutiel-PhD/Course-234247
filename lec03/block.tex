@@ -16,7 +16,7 @@
 \begin{center}
 \begin{tikzpicture}[every node/.style={default node}]
 \foreach[count=\i] \x \y in{0/0, 1/1, 1/-1, 2/0, 3/0, 4/1, 4/-1, 5/1}{
-	\node(\i) at(\x, \y) {\i}:
+	\node(\i) at(\x, \y) {\i};
 }
 \foreach \u \v in {%
 	1/2%
@@ -86,6 +86,12 @@ $H_2$
 נובע שגם לכל היותר
 
 \end{proof}
+\begin{claim}
+כל מעגל ב-$G$ מוכל ברכיב פריק של $G$
+\end{claim}
+\begin{proof}
+נובע ישירות מכך שמעגל הוא רכיב אי פריק (לא מקסימלי)
+\end{proof}
 
 \begin{claim}
 עבור צומת הפרדה $u$ עם בן מפריד $v$, שאר צמתי הרכיב האי פריק שמכיל את $uv$ נמצאים ב-%
@@ -152,11 +158,102 @@ $B(v) \leftarrow -1$
 						\item \colorbox{yellow}{$B(w) = b$}
 						\item \colorbox{yellow}{$w \leftarrow S'.pop()$}
 					\end{itemize}	
-			\end{enumerate}			
 			\item \colorbox{yellow}{$b \leftarrow b + 1$}
+			\end{enumerate}			
 	\end{enumerate}
 	\item
 	$i \leftarrow i + 1$
 	\end{enumerate}
 \end{enumerate}
+
+\subsection*{עץ רכיבים אי פריקים}
+עבור גרף $G$ נגדיר את גרף הרכיבים האי פריקים, 
+$B(G)$,
+כגרף הדו צדדי על קבוצות הצמתים $B$ ו-$S$ 
+כאשר ב-$B$ צומת עבור כל רכיב אי פריק ב-$G$ וב-$S$ צומת עבור כל צומת הפרדה ב-$G$.
+בגרף הנ"ל תהיה קשת $bs$, 
+$b \in B$,
+$s \in S$,
+אמ"מ הרכיב שמתאים ל-$b$ מכיל את הצומת $s$.
+
+נשים לב שכל מסלול ב-$G$ מתאים למסלול (יחיד) ב-%
+$B(G)$
+ולכן 
+$B(G)$
+קשיר.
+כמו כן נשים לב שב-%
+$B(G)$
+לא קיימים מעגלים כי זה יגרור שקיים מעגל ב-$G$ שאינו שעובר ביותר מרכיב אי פריק אחד.
+\begin{corollary}
+$B(G)$
+הוא עץ
+\end{corollary}
+
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}, x=2cm]
+\foreach[count=\i] \x \y in{0/0, 1/1, 1/-1, 2/0, 3/0, 4/1, 4/-1, 2/-2}{
+	\node(\i) at(\x, \y) {\i};
+}
+\foreach \u \v in {%
+	1/2%
+	,1/3%
+	,2/4%	
+	,3/4%	
+	,4/5%	
+	,4/8%	
+	,5/6%	
+	,5/7%	
+	,6/7%	
+}{
+	\draw (\u) -- (\v);
+}
+
+\draw[dashed]
+(1.west) to[bend left]
+(2.north) to[bend left]
+(4.east) to[bend left]
+(3.south) to[bend left]
+(1.west)
+;
+
+\draw[dashed]
+(4.west) to[out=90, in=90]
+(5.east) to[out=-90, in=-90]
+(4.west) 
+;
+
+\draw[dashed]
+(5.west) to[bend left]
+(6.north) to[out=0,in=0]
+(7.south) to[bend left]
+(5.west) 
+;
+
+\draw[dashed]
+(4.north) to[out=0, in=0]
+(8.south) to[out=180,in=-180]
+(4.north) 
+;
+
+\begin{scope}[yshift=-4cm]
+\foreach[count=\i] \x/\y/\n in{
+	2/0/4
+	,3/0/5
+	,4/1/6
+	,2/-2/8}
+{
+	\node(s\i) at(\x, \y) {\n};
+}
+\foreach[count=\i] \x/\y/\n in{
+	1/0/1234
+	,2.5/0/45
+	,2/-1/48
+	,3.5/0/567
+}{
+	\node[rectangle](b\i) at(\x, \y) {\n};
+}
+\draw (b1) -- (s1);
+\end{scope}
+\end{tikzpicture}
+\end{center}
 
