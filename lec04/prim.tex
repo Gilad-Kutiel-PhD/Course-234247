@@ -1,0 +1,72 @@
+אלגוריתם פרים מתחיל מעץ שמכיל צומת אחד ובכל איטרציה מוסיף לעץ את הקשת הכי זולה שקצה
+אחד שלה בדיוק נוגע בעץ.
+דוגמה:
+
+\begin{center}
+\begin{tikzpicture}[
+every node/.style={default node}
+,x=1.7cm
+,y=1.7cm
+]
+
+\foreach[count=\i] \x \y in {
+0/0,0/1,1/0,1/1,-1/-1,-1/2,2/-1,2/2}{
+\node(\i) at (\x, \y) {\i};
+}
+
+\foreach \u \v \w in {
+3/1/1%
+,1/2/2%
+,2/4/2%
+,4/3/2%
+,5/6/3%
+,6/8/4%
+,8/7/5%
+,7/5/6%
+,6/2/7%
+,8/4/8%
+,7/3/8%
+,5/1/8%
+}{
+\draw (\u) -- (\v) node[label above]{\w};
+}
+
+\begin{scope}[xshift=8cm]
+\foreach[count=\i] \x \y in {
+0/0,0/1,1/0,1/1,-1/-1,-1/2,2/-1,2/2}{
+\node(\i) at (\x, \y) {\i};
+}
+
+\foreach[count=\i] \u \v in {
+5/6%
+,6/8%
+,6/2%
+,2/4%
+,2/1%
+,1/3%
+,8/7%
+}{
+\draw (\u) -- (\v) node[label below, blue]{\i};
+}
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\newpage
+פורמלית:
+\begin{enumerate}
+\item
+אתחול:
+$U \leftarrow \{u\}, B \leftarrow \emptyset$, 
+כאשר $u$ צומת שרירותי.
+\item
+כל עוד 
+$U \neq V$
+\begin{enumerate}
+הפעל את הכלל הכחול על החתך $U$ ועדכן את $B$
+\end{enumerate}
+\begin{observation}
+אלגוריתם פרים הוא מימוש של האלגוריתם הכללי שמפעיל את הכלל הכחול.
+\end{observation}
+\end{enumerate}
