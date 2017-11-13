@@ -1,0 +1,34 @@
+\begin{description}
+\item[יער] - 
+גרף חסר מעגלים
+\item[עץ] - 
+יער קשיר
+\item[חתך] - 
+תת קבוצה של צמתים 
+$S \subseteq V$
+\item[קשת חוצה] - 
+קשת $uv$ חוצה חתך $S$ אם 
+$| \{u,v\} \cap S | = 1$
+\end{description}
+
+\begin{observation}
+הוספת קשת $uv$ לעץ סוגרת מעגל שמכיל את הקשת + המסלול מ-$v$ ל-$u$ בעץ.
+כעת ניתן להסיר כל קשת מהמעגל הנ"ל ולקבל בחזרה עץ.
+\end{observation}
+
+\begin{observation}
+\label{observation:cycle}
+אם קשת $uv$ נמצאת על מעגל והיא חוצה חתך $S$ אז את $S$ חוצה קשת אחת נוספת (לפחות)
+ששייכת למעגל.
+\end{observation}
+
+\begin{definition}[עץ פורש מינימלי]
+בהינתן זוג של גרף לא מכוון 
+$G = (V, E)$
+ופונקצית משקל (אי שלילית)
+$w:E \to \mathbb{R}$
+עץ פורש מינימלי הוא כל עץ 
+$T = (V, F)$
+שממזער את הערך 
+$\displaystyle\sum_{e \in F} w(e)$.
+\end{definition}
