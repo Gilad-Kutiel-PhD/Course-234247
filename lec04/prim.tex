@@ -1,6 +1,30 @@
 אלגוריתם פרים מתחיל מעץ שמכיל צומת אחד ובכל איטרציה מוסיף לעץ את הקשת הכי זולה שקצה
 אחד שלה בדיוק נוגע בעץ.
-דוגמה:
+פורמלית:
+\begin{enumerate}
+\item
+אתחול:
+$U \leftarrow \{u\}, B \leftarrow \emptyset$, 
+כאשר $u$ צומת שרירותי.
+\item
+כל עוד 
+$T = (V, B)$
+אינו קשיר הפעל את הכלל הכחול:
+\begin{enumerate}
+\item
+בחר את החתך הלבן, $U$, וקשת קלה, $uv$, שחוצה אותו 
+\item
+$B \leftarrow B \cup \{uv\}$, 
+$U \leftarrow U \cup \{v, u\}$
+\end{enumerate}
+\end{enumerate}
+\begin{observation}
+אלגוריתם פרים הוא מימוש של האלגוריתם הכללי שמפעיל את הכלל הכחול.
+\end{observation}
+
+
+
+\textbf{דוגמה:}
 
 \begin{center}
 \begin{tikzpicture}[
@@ -53,24 +77,8 @@ every node/.style={default node}
 \end{tikzpicture}
 \end{center}
 
-\newpage
-פורמלית:
-\begin{enumerate}
-\item
-אתחול:
-$U \leftarrow \{u\}, B \leftarrow \emptyset$, 
-כאשר $u$ צומת שרירותי.
-\item
-כל עוד 
-$U \neq V$
-\begin{enumerate}
-\item
-הפעל את הכלל הכחול על החתך $U$ ועדכן את $B$
-\end{enumerate}
-\end{enumerate}
-\begin{observation}
-אלגוריתם פרים הוא מימוש של האלגוריתם הכללי שמפעיל את הכלל הכחול.
-\end{observation}
+
+
 
 \textbf{הערות:}
 \begin{itemize}
