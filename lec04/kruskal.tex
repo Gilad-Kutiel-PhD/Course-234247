@@ -1,7 +1,27 @@
 אלגוריתם קרוסקל מתחיל מיער ללא קשתות, בכל שלב באלגוריתם נמזג שני רכיבי קשירות באמצעות
 הקשת הקלה ביותר שמחברת שני רכיבי קשירות.
+פורמלית:
+\begin{enumerate}
+\item
+אתחול:
+$\mathcal{C} \leftarrow \{\{v\} : v \in V \}$, 
+\item
+כל עוד 
+$T = (V, B)$
+אינו קשיר הפעל את הכלל הכחול:
+\begin{enumerate}
+\item
+תהי $e$ הקשת הקלה ביותר שמחברת שני רכיבי קשירות,
+$C_i, C_j$
+\item
+עדכן
+$B \leftarrow B \cup \{e\}$,
+$\mathcal{C} \leftarrow \mathcal{C} \setminus \{C_i, C_j\} \cup \{C_i \cup C_j\}$
 
-דוגמה:
+\end{enumerate}
+\end{enumerate}
+
+\textbf{דוגמה:}
 
 \begin{center}
 \begin{tikzpicture}[
@@ -54,20 +74,7 @@ every node/.style={default node}
 \end{tikzpicture}
 \end{center}
 
-פורמלית:
-\begin{enumerate}
-\item
-אתחול:
-$C \leftarrow \{\{v\} : v \in V \}$, 
-\item
-כל עוד 
-$|C| > 1$
-\begin{enumerate}
-\item
-בחר את הקשת עם המשקל המינימלי שמחברת שני רכיבי קשירות, הפעל עליה את הכלל הכחול ועדכן 
-את $C$ בהתאם
-\end{enumerate}
-\end{enumerate}
+
 
 \textbf{הערות:}
 \begin{itemize}
