@@ -3,6 +3,21 @@
 גרף חסר מעגלים
 \item[עץ] - 
 יער קשיר
+\end{description}
+
+\begin{definition}[עץ פורש מינימלי]
+בהינתן זוג של גרף לא מכוון 
+$G = (V, E)$
+ופונקצית משקל (אי שלילית)
+$w:E \to \mathbb{R}$
+עץ פורש מינימלי הוא כל עץ 
+$T = (V, F)$
+שממזער את הערך 
+$\displaystyle\sum_{e \in F} w(e)$.
+\end{definition}
+
+
+\begin{description}
 \item[חתך] - 
 תת קבוצה של צמתים 
 $S \subseteq V$
@@ -22,13 +37,12 @@ $| \{u,v\} \cap S | = 1$
 ששייכת למעגל.
 \end{observation}
 
-\begin{definition}[עץ פורש מינימלי]
-בהינתן זוג של גרף לא מכוון 
-$G = (V, E)$
-ופונקצית משקל (אי שלילית)
-$w:E \to \mathbb{R}$
-עץ פורש מינימלי הוא כל עץ 
-$T = (V, F)$
-שממזער את הערך 
-$\displaystyle\sum_{e \in F} w(e)$.
-\end{definition}
+\begin{observation}
+מחיקת קשת $e$ מעץ יוצרת יער עם שני רכיבי קשירות.
+נסמן ב-%
+$U_e$
+את החתך שהרכיבים הללו מגדירים (אחד הרכיבים באופן שרירותי).
+אם נוסיף לגרף קשת כלשהי שחוצה את החתך 
+$U_e$
+קיבלנו שוב עץ.
+\end{observation}
