@@ -16,6 +16,58 @@ $T = (V, F)$
 $\displaystyle\sum_{e \in F} w(e)$.
 \end{definition}
 
+\textbf{דוגמה:}
+\begin{center}
+\begin{tikzpicture}[
+every node/.style={default node}
+,x=1.7cm
+,y=1.7cm
+]
+
+\foreach[count=\i] \x \y in {
+0/0,0/1,1/0,1/1,-1/-1,-1/2,2/-1,2/2}{
+\node(\i) at (\x, \y) {\i};
+}
+
+\foreach \u \v \w in {
+3/1/1%
+,1/2/2%
+,2/4/2%
+,4/3/2%
+,5/6/3%
+,6/8/4%
+,8/7/5%
+,7/5/6%
+,6/2/7%
+,8/4/8%
+,7/3/8%
+,5/1/8%
+}{
+\draw (\u) -- (\v) node[label above]{\w};
+}
+
+\begin{scope}[xshift=8cm]
+\foreach[count=\i] \x \y in {
+0/0,0/1,1/0,1/1,-1/-1,-1/2,2/-1,2/2}{
+\node(\i) at (\x, \y) {\i};
+}
+
+\foreach \u \v \w in {
+3/1/1%
+,1/2/2%
+,4/3/2%
+,5/6/3%
+,6/8/4%
+,8/7/5%
+,6/2/7%
+}{
+\draw (\u) -- (\v) node[label above]{\w};
+}
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+
 
 \begin{description}
 \item[חתך] - 
@@ -25,6 +77,11 @@ $S \subseteq V$
 קשת $uv$ חוצה חתך $S$ אם 
 $| \{u,v\} \cap S | = 1$
 \end{description}
+
+\begin{observation}
+גרף קשיר אמ"מ כל חתך לא טריוויאלי נחצה על ידי קשת אחת לפחות.
+\end{observation}
+
 
 \begin{observation}
 הוספת קשת $uv$ לעץ סוגרת מעגל שמכיל את הקשת + המסלול מ-$v$ ל-$u$ בעץ.
