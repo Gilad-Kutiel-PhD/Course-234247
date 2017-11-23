@@ -1,18 +1,25 @@
 נתונים $n$ אינטרוולים
-$A = \{(a_1, b_1), \ldots, (a_n, b_n)\}$, 
-$a_i, b_i \in \mathbb{R}_+$
+$A = \{a_1, \ldots, a_n\}$, 
+נסמן ב-%
+$s(a_i)$
+את זמן ההתחלה של האינטרוול 
+$a_i$
+וב-%
+$e(a_i)$
+את זמן הסיום שלו.
+לכל אינטרוול מתקיים ש-%
+$s(a_i), e(a_i) \in \mathbb{R}_+$
 וכן 
-$a_i \leq b_i$
+$s(a_i) < e(a_i)$
 רוצים למצוא תת קבוצה בגודל מקסימלי
 $I \subseteq A$
 כך שהאינטרוולים ב-$I$ זרים בזוגות, כלומר לכל 
-$i \leq j$, 
-כך ש-%
-$(a_i, b_i), (a_j, b_j) \in I$
+$a,b \in I$, 
 אחד התנאים מתקיים:
-$b_i < a_j$
+$e(a) < s(b)$
 או ש-%
-$a_i > b_j$.
+$e(b) < s(a)$.
+
 דוגמה:
 
 \begin{center}
@@ -58,7 +65,31 @@ $a_i > b_j$.
 \end{tikzpicture}
 \end{center}
 
-דוגמאות לגישות חמדניות שלא עובדות:
+אלגוריתם חמדן:
+\begin{enumerate}
+\item
+אתחול:
+$I \leftarrow \emptyset$, 
+$\bar{e} \leftarrow 0$
+\item
+עבור כל אינטרוול 
+$a$
+בסדר לא יורד של ערכי 
+$e(a)$:
+	\begin{enumerate}
+	\item
+	אם 
+	$s(a) \geq \bar{e}$
+		\begin{enumerate}
+		\item
+		$I \leftarrow I \cup \{a\}$
+		\item
+		$\bar{e} \leftarrow e(a)$
+		\end{enumerate}
+
+	\end{enumerate}
+\end{enumerate}
+לפני שנוכיח נכונות נראה דוגמאות לגישות חמדניות שלא עובדות:
 
 לבחור את האינטרוול עם זמן התחלה הכי מוקדם
 \begin{center}
@@ -98,32 +129,40 @@ $a_i > b_j$.
 }
 \end{tikzpicture}
 \end{center}
-אלגוריתם חמדן:
-\begin{enumerate}
-\item
-אתחול:
-$I \leftarrow \emptyset$, 
-$b \leftarrow 0$
-\item
-עבור כל אינטרוול 
-$(a_i, b_i)$
-בסדר לא יורד של ערכי 
-$b_i$:
-	\begin{enumerate}
-	\item
-	אם 
-	$a_i \geq b$
-		\begin{enumerate}
-		\item
-		$I \leftarrow I \cup \{(a_i, b_i)\}$
-		\item
-		$b \leftarrow b_i$				
-		\end{enumerate}
 
-	\end{enumerate}
-\end{enumerate}
 
 הוכחת נכונות: נוכיח את הטענה הבאה, בכל צעד של האלגוריתם קיימת קבוצה בגודל מקסימלי, 
 $I'$
-כך ש-$I$ רישא שלה ביחס למיון ע"פ ערכי $b$.
+כך ש-$I$ רישא שלה ביחס למיון ע"פ ערכי $e$.
 
+בסיס: באתחול טריוויאלי
+
+צעד: נבחן את הקבוצות $I$ ו-$I'$ בצעד ה-%
+$i + 1$.
+לפי הנחת האינדוקציה הקבוצות, ממוינות על פי ערכי $e$ נראות כך:
+$$
+\begin{array}{ll}
+I & = \{\alpha_1, \ldots, \alpha_i, \alpha_{i+1}\}
+\\
+I' & = \{\alpha_1, \ldots, \alpha_i, \beta_1, \ldots, \beta_k\}
+\end{array}
+$$
+נסתכל על הפתרון
+$$
+I'' =  \{\alpha_1, \ldots, \alpha_i, \bm{\alpha_{i+1}}, \ldots, \beta_k\}
+$$
+מכיוון ש-%
+$I'$
+פתרון חוקי האינטרוולים שם זרים בזוגות ולכן גם האינטרוולים ב-%
+$I''$
+למעט אולי 
+$\alpha_{i+1}$.
+מכיוון שהאלגוריתם בונה פתרון חוקי אז אנחנו יודעים ש-%
+$\alpha_{i+1}$
+זר ל-%
+$\alpha_1, \ldots, \alpha_i$
+וכן 
+$e(\alpha_{i+1}) \leq e(\beta_1) \leq s(beta_2) \leq, \ldots, \leq s(\beta_k)$
+ולכן 
+$I''$
+פתרון בגודל מקסימלי כך ש-$I$ רישא שלו.
