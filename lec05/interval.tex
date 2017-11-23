@@ -58,6 +58,46 @@ $a_i > b_j$.
 \end{tikzpicture}
 \end{center}
 
+דוגמאות לגישות חמדניות שלא עובדות:
+
+לבחור את האינטרוול עם זמן התחלה הכי מוקדם
+\begin{center}
+\begin{tikzpicture}
+\draw[very thin, gray!30] (0,0) grid (11,1);
+\draw (0,0) -- (11,0);
+\foreach \s in {1,3,...,9}{
+    \pgfmathsetmacro\e{\s + 1}
+    \draw (\s, 1) -- (\e, 1);
+}
+\end{tikzpicture}
+\end{center}
+
+לבחור את האינטרוול הכי קצר
+\begin{center}
+\begin{tikzpicture}
+\draw[very thin, gray!30] (0,0) grid (11,1);
+\draw (0,0) -- (5,0);
+\draw (6,0) -- (11,0);
+\draw (4,1) -- (7,1);
+\end{tikzpicture}
+\end{center}
+
+לבחור את האינטרוול שנחתך עם הכי מעט אינטרוולים
+\begin{center}
+\begin{tikzpicture}[y=3mm, x=8mm]
+\draw[very thin, gray!30, ystep=3mm, xstep=8mm] (0,0) grid (15,4);
+\draw (0,0) -- (3,0);
+\draw (4,0) -- (7,0);
+\draw (8,0) -- (11,0);
+\draw (12,0) -- (15,0);
+
+\draw (6,1) -- (9,1);
+\foreach \y in {1,...,4}{
+	\draw (2, \y) -- (5, \y);
+	\draw (10, \y) -- (13, \y);
+}
+\end{tikzpicture}
+\end{center}
 אלגוריתם חמדן:
 \begin{enumerate}
 \item
@@ -83,6 +123,7 @@ $b_i$:
 	\end{enumerate}
 \end{enumerate}
 
-הוכחת נכונות: נוכיח את הטענה הבאה, בכל פעם שהאלגוריתם מוסיף אינטרוול אז קיים שיבוץ אופטימלי
-שמכיל את $I$ 
+הוכחת נכונות: נוכיח את הטענה הבאה, בכל צעד של האלגוריתם קיימת קבוצה בגודל מקסימלי, 
+$I'$
+כך ש-$I$ רישא שלה ביחס למיון ע"פ ערכי $b$.
 
