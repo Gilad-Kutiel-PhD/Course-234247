@@ -1,0 +1,43 @@
+קוד $c$ יקרא חסר רישות אם לא קיימים
+$a,b \in \Sigma$
+כך ש-%
+$c(a)$
+רישא של
+$c(b)$
+
+קל לראות שקודים חסרי רישות ניתנים לפענוח וכן לפענוח מידי.
+מעבר לכך המשפט הבא (ללא הוכחה) מראה שלמטרתנו מספיק להתמקד בקודים חסרי רישות.
+\begin{theorem}
+לכל קוד חד פענח $c$ קיים קוד חסר רישות $c'$ כך שלכל 
+$a \in \Sigma$
+מתקיים
+$|c(a)| = |c'(a)|$.
+\end{theorem}
+
+\subsection*{קוד חסר רישות כעץ בינרי}
+ניתן לייצג כל קוד חסר רישות כעץ בינרי, למשל את הקוד 
+$c_1$
+ניתן לייצג על ידי העץ הבא:
+
+\begin{center}
+\begin{tikzpicture}
+
+\node(s) at(0,0) {};
+\node(bcd) at(1,-1) {};
+\node(b) at(0,-2) {B};
+\node(cd) at(2,-2) {};
+\node(c) at(1,-3) {C};
+\node(d) at(3,-3) {D};
+
+\begin{scope}
+\node(a) at (-1,-1) {A};
+\end{scope}
+
+\draw (s) -- (a) node[label above]{1};
+\draw (s) -- (bcd) node[label above] {0};
+\draw (bcd) -- (b) node[label above] {1};
+\draw (bcd) -- (cd) node[label above] {0};
+\draw (cd) -- (c) node[label above] {1};
+\draw (cd) -- (d) node[label above] {0};
+\end{tikzpicture}
+\end{center}
