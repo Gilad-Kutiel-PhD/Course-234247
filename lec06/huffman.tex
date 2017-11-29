@@ -43,6 +43,7 @@ $f$
 \end{proof}
 
 \begin{lemma}
+\label{lemma:union}
 אם 
 $a,b \in \Sigma$
 שני איברים בעלי ערך 
@@ -79,3 +80,43 @@ w(T) = w(T') + f(a) + f(b) \leq w(\hat{T}') + f(a) + f(b) = w(\hat{T})
 $$
 
 \end{proof}
+
+\textbf{אלגוריתם לבניית עץ האפמן}
+\begin{enumerate}
+\item
+אם
+$|\Sigma| = 2$
+מחזירים עץ בינארי עם 3 צמתים
+\item
+יהיו 
+$a,b \in \Sigma$
+שני האיברים עם ערכי $f$ מינימליים
+\begin{enumerate}
+\item
+מגדירים
+$\Sigma' \leftarrow \Sigma \setminus \{a,b\} \cup \{z\}$
+\item
+קובעים 
+$f(z) = f(a) + f(b)$
+\item
+קוראים לאלגוריתם באופן רקורסיבי על 
+$\Sigma'$
+ומקבלים 
+$T'$
+מוסיפים לעלה $z$ ב-%
+$T'$
+את הבנים $a$ ו-$b$ לקבלת $T$
+\item
+מחזירים $T$
+\end{enumerate}
+\end{enumerate}
+
+\begin{claim}
+האלגוריתם מחזיר עץ האפמן
+\end{claim}
+\begin{proof}
+באינדוקציה על גודל הא"ב ובעזרת למה
+\ref{lemma:union}
+\end{proof}
+\textbf{דוגמת הרצה:}
+גנן גידל דגן בגן
