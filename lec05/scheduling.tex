@@ -24,6 +24,44 @@ $$
 \text{arg}\min_\pi \{\max_i l(a_i)\}
 $$
 
+\textbf{דוגמה:}
+בהינתן שלוש המשימות הבאות:
+\begin{english}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+A & t & d
+\\
+\hline
+$a_1$ & 2 & 7
+\\ \hline
+$a_2$ & 3 & 10
+\\ \hline
+$a_3$ & 5 & 5
+\\ \hline
+\end{tabular}
+\end{center}
+\end{english}
+
+שני שיבוצים אפשריים, אחד ללא איחור כלל והשני עם איחור של 5.
+
+\begin{center}
+\begin{tikzpicture}[x=7mm, y=7mm]
+\draw[very thin, grey!30] (0,0) grid[step=7mm] (10,1);
+\draw (0,0) rectangle +(2,1) node[pos=.5] {$a_1$};
+\draw (2,0) rectangle +(3,1) node[pos=.5] {$a_2$};
+\draw (5,0) rectangle +(5,1) node[pos=.5] {$a_3$};
+
+\begin{scope}[xshift=8cm]
+\draw[very thin, grey!30] (0,0) grid[step=7mm] (10,1);
+\draw (0,0) rectangle +(5,1) node[pos=.5] {$a_3$};
+\draw (5,0) rectangle +(2,1) node[pos=.5] {$a_1$};
+\draw (7,0) rectangle +(3,1) node[pos=.5] {$a_2$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+
 האלגוריתם החמדן יבצע את המשימות בסדר לא יורד של זמני הסיום הרצויים.
 
 \textbf{הוכחת נכונות}
