@@ -1,0 +1,46 @@
+בהינתן גרף 
+$G = (V, E)$
+וצומת מקור $s$,
+נרצה לחשב את הערך 
+$\delta(s,v)$
+לכל 
+$v \in V \setminus \{s\}$.
+
+\begin{definition}[פונקציית חסם עליון]
+בהינתן גרף 
+$G = (V, E)$,
+פונקציה 
+$d:V \to \mathbb{R}$
+תקרא פונקציית חסם עליון אם לכל 
+$v \in V$
+מתקיים ש-%
+$d(v) \geq \delta(s,v)$
+\end{definition}
+
+\textbf{אי שוויון המשולש:}
+נשים לב שלכל קשת 
+$uv \in E$
+מתקיים ש-%
+$\delta(s,v) \leq \delta(s,u) + w(uv)$
+
+\textbf{ניסיון שיפור:}
+בהינתן גרף 
+$G = (V,E)$
+ופונקציית חסם עליון 
+$d:V \to \mathbb{R}$
+ניסיון שיפור של
+$d(v)$
+לפי קשת $uv$ מוגדר להיות
+$d(v) \leftarrow \min\{d(v), d(u) + w(uv)\}$
+
+\begin{claim}
+אם $d$ היא פונקציית חסם עליון לפני ניסיון שיפור אז $d$ היא פונקציית חסם עליון אחרי ניסיון השיפור.
+\end{claim}
+\begin{proof}
+אם אחרי ניסיון השיפור מתקיים ש-%
+$d(v) < \delta(v)$
+אז מתקיים ש:%
+$$d(v) < \delta(s,v) \leq \delta(s,u) + w(uv) \leq d(u) + w(uv) = d(v)$$
+
+\end{proof}
+
