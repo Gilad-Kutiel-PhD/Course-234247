@@ -44,3 +44,94 @@ $$d(v) < \delta(s,v) \leq \delta(s,u) + w(uv) \leq d(u) + w(uv) = d(v)$$
 
 \end{proof}
 
+\begin{definition}(קשת משפרת)
+קשת
+$uv$
+תקרא משפרת אם
+$d(v) > d(u) + w(uv)$
+\end{definition}
+
+
+\textbf{
+אלגוריתם גנרי לחישוב ערך המסלול הקל ביותר ממקור בודד
+}
+
+\begin{enumerate}
+\item
+אתחול:
+לכל 
+$v \in V$
+הצב
+$d(v) \leftarrow \infty$,
+הצב
+$d(s) \leftarrow 0$
+\item
+כל עוד קיימת קשת משפרת 
+$uv$
+\begin{enumerate}
+\item
+שפר את 
+$d(v)$
+לפי
+$uv$
+\end{enumerate}
+\end{enumerate}
+
+%% REACHABLE NODES
+\begin{claim}
+אם האלגוריתם עוצר וצומת $v$ ישיג מ-$s$ אז 
+$d(v) < \infty$
+\end{claim}
+\begin{proof}
+נניח בשלילה שלא ונסתכל על הקשת הראשונה 
+$uv$
+במסלול מ-$s$ ל-$v$ כך ש-%
+$d(u) < \infty$
+ו-%
+$d(v) = \infty$
+- סתירה.
+\end{proof}
+
+
+
+%% NEGATIVE CYCELES
+\begin{claim}
+אם קיים בגרף מעגל שלילי ישיג מ-$s$ אז האלגוריתם לא עוצר.
+\end{claim}
+\begin{proof}
+נשים לב שקשת אינה משפרת אמ"מ 
+$w(uv) > d(v) - d(u)$.
+נסתכל על מעגל שלילי
+$v_1, \ldots, v_k, v_1$
+נשים לב ש:
+$$
+0 = 
+d(v_1) - d(v_k) + \sum_{i=1}^{k-1} d(v_{i + 1}) - d(v_{i})
+\leq
+w(v_1v_k) + \sum_{i=1}^{k-1} w(v_{i+1}v_i) < 0
+$$
+\end{proof}
+
+
+
+%% CORRECTNESS
+\begin{claim}
+אם האלגוריתם עוצר אז 
+$d(v) = \delta(v)$
+לכל
+$v \in V$
+\end{claim}
+\begin{proof}
+נשים לב ש-$d$ היא פונקציית חסם עליון והפעולה היחידה שהאלגוריתם מבצע היא ניסיון שיפור ולכן
+בסיום האלגוריתם $d$ היא עדיין פונקציית חסם עליון, כלומר 
+$d(v) \geq \delta(v)$
+לכל
+$v \in V$.
+
+נראה שמתקיים 
+$d(v) \leq \delta(v)$.
+נסמן את קבוצת הצמתים שהטענה מתקיימת עבורם ב-%
+$U$
+(נשים לב ש-%
+$s \in U$)
+\end{proof}
