@@ -83,10 +83,7 @@ $d(s) \leftarrow 0$
 $uv$
 \begin{enumerate}
 \item
-שפר את 
-$d(v)$
-לפי
-$uv$
+$d(v) \leftarrow d(u) + w(uv)$
 \end{enumerate}
 \end{enumerate}
 
@@ -159,4 +156,59 @@ $$w(uv) = \delta(v) - \delta(u) < d(v) - d(u)$$
 $uv$
 קשת משפרת.
 
+\end{proof}
+
+\textbf{מציאת עץ המסלולים הקלים ביותר}
+נעדכן את האלגוריתם כך שלכל צומת יהיה מצביע לצומת הקודם אליו במסלול הקל ביותר אליו מ-$s$.
+
+\begin{enumerate}
+\item
+אתחול:
+לכל 
+$v \in V$
+הצב
+$d(v) \leftarrow \infty, p(v) \leftarrow nil$,
+הצב
+$d(s) \leftarrow 0$
+\item
+כל עוד קיימת קשת משפרת 
+$uv$
+\begin{enumerate}
+\item
+$d(v) \leftarrow d(u) + w(uv)$
+\item
+$p(v) \leftarrow u$
+\end{enumerate}
+\end{enumerate}
+
+\begin{claim}
+בכל שלב בזמן ריצת האלגוריתם, אם
+$p(v) = u$
+אז 
+$d(v) = d(u) + w(uv)$
+\end{claim}
+\begin{proof}
+מיידי מהגדרת האלגוריתם.
+\end{proof}
+
+
+
+נגדיר
+$V' = \{v : p(v) \neq nil\} \cup \{s\}$
+ו-%
+$E' = \{uv : p(v) = u\}$
+\begin{claim}
+בכל שלב בזמן ריצת האלגוריתם הגרף 
+$T = (V', E')$
+הוא עץ מסלולים קלים ביותר שפורש את 
+$V'$
+\end{claim}
+\begin{proof}
+באינדוקציה.
+
+בסיס: נכון
+
+צעד: ניסיון שיפור לפי $uv$ יכול להרוס את 
+$T'$
+רק אם הניסיון שיפור סוגר מעגל.
 \end{proof}
