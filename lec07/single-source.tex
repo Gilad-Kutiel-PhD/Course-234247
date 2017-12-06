@@ -4,7 +4,7 @@ $G = (V, E)$
 נרצה לחשב את הערך 
 $\delta(s,v)$
 לכל 
-$v \in V \setminus \{s\}$.
+$v \in V$.
 
 \begin{definition}[פונקציית חסם עליון]
 בהינתן גרף 
@@ -26,6 +26,25 @@ $d:V \to \mathbb{R}$
 $d(v)$
 לפי קשת $uv$ מוגדר להיות
 $d(v) \leftarrow \min\{d(v), d(u) + w(uv)\}$
+
+\textbf{דוגמה:}
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}]
+\node(u) at(0,0) {u};
+\node(v) at(3,0) {v};
+\node[label, above=1mm of u] {5};
+\node[label, above=1mm of v] {10};
+\draw[->] (u) -- (v) node[label above]{3};
+
+\begin{scope}[yshift=-12mm]
+\node(u) at(0,0) {u};
+\node(v) at(3,0) {v};
+\node[label, above=1mm of u] {5};
+\node[label, above=1mm of v, orange] {\textbf{8}};
+\draw[->] (u) -- (v) node[label above]{3};
+\end{scope}
+\end{tikzpicture}
+\end{center}
 
 \begin{claim}
 אם $d$ היא פונקציית חסם עליון לפני ניסיון שיפור אז $d$ היא פונקציית חסם עליון אחרי ניסיון השיפור.
