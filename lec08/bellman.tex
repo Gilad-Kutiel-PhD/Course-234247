@@ -1,0 +1,58 @@
+\begin{enumerate}
+\item
+אתחול: לכל
+$v \in V$
+מציבים 
+$d(v) \leftarrow \infty$, 
+$p(v) \leftarrow nil$.
+מציבים
+$d(s) \leftarrow 0$
+\item
+מבצעים 
+$|V| - 1$
+פעמים:
+\begin{enumerate}
+לכל קשת 
+$e \in E$
+בצע ניסיון שיפור לפי $e$
+\end{enumerate}
+\item
+אם עדיין יש קשתות משפרות קבע כי יש מעגל שלילי, אחרת החזר את $d$ ו-$p$
+\end{enumerate}
+
+זמן הריצה של האלגוריתם הוא 
+$O(|V||E|)$.
+
+\begin{claim}
+\label{claim:no-negative}
+אם אין מעגלים שלילים אז בסיום האלגוריתם
+$d(v) = \delta(s,v)$
+לכל צומת 
+$v \in V$.
+\end{claim}
+
+\begin{proof}
+באינדוקציה על עומק הצומת בעץ המסלולים הקצרים ביותר
+\end{proof}
+
+\begin{claim}
+\label{claim:negative}
+אם קיים מעגל שלילי האלגוריתם קובע שקיים כזה.
+\end{claim}
+
+\begin{proof}
+נובע מהגדרת האלגוריתם והטענות על האלגוריתם הגנרי.
+\end{proof}
+
+\begin{theorem}
+אלגוריתם בלמן פורד פולט עץ מסלולים קלים ביותר אם בגרף אין מעגלים שלילים, 
+אחרת הוא מודיע כי קיים כזה.
+\end{theorem}
+
+\begin{proof}
+מיידי מטענות 
+\ref{claim:negative}
+ו-%
+\ref{claim:no-negative}.
+\end{proof}
+

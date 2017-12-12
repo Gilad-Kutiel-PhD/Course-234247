@@ -1,0 +1,62 @@
+אלגוריתם דייקסטרה מניח שבגרף אין משקלים שלילים.
+
+\begin{enumerate}
+\item
+אתחול: לכל
+$v \in V$
+מציבים 
+$d(v) \leftarrow \infty$, 
+$p(v) \leftarrow nil$.
+מציבים
+$d(s) \leftarrow 0$, 
+וכן 
+$Q \leftarrow V$
+\item
+כל עוד $Q$ לא ריק
+\begin{enumerate}
+\item
+יהי 
+$u \in Q$
+צומת עם ערך $d$ מינימלי
+\item
+הוצא את $u$ מ-$Q$ ולכל 
+$uv \in E$
+בצע ניסיון שיפור לפי
+$uv$
+\end{enumerate}
+\end{enumerate}
+
+אם ממשים את $Q$ על ידי ערימת מינימום אז זמן הריצה של האלגוריתם הוא 
+$O(|V| + |E|\log|V|$.
+
+\begin{claim}
+ערכי $d$ של הצמתים לפי סדר הוצאתם מ-$Q$ הם פונקציה מונוטונית לא יורדת.
+\end{claim}
+
+\begin{proof}
+באינדוקציה על צעד האלגוריתם + שימוש בנתון שלא קיימים משקלים שלילים.
+\end{proof}
+
+\begin{corollary}
+ברגע שצומת יצא מ-$Q$, ערך $d$ שלו לא משתנה.
+\end{corollary}
+
+\begin{claim}
+\label{claim:no-relexation}
+בסיום ריצת האלגוריתם אין בגרף קשתות משפרות.
+\end{claim}
+\begin{proof}
+הוכחה באינדוקציה על צעד האלגוריתם שאין קשתות משפרות בין צמתים מחוץ ל-$Q$.
+\end{proof}
+
+\begin{theorem}
+אלגוריתם דייקסטרה פולט את עץ המסלולים הקלים ביותר.
+\end{theorem}
+\begin{proof}
+לפי טענה
+\ref{claim:no-relexation}
+והטענות על האלגוריתם הגנרי.
+\end{proof}
+
+
+
