@@ -193,18 +193,21 @@ $$
 
 \begin{center}
 \begin{tikzpicture}
-\matrix(O) [matrix of math nodes
+\matrix(O) [
+matrix of math nodes
+,nodes={
+	,text width=4mm
+	,text height=2mm
+	,text depth=1mm
+	,text centered
+	,inner sep=1mm
+}
 ,row 1 column 3/.style={orange}
 ,row 1 column 5/.style={orange}
 ,row 1 column 8/.style={orange}
 ,row 1 column 11/.style={orange}
 ,row 1 column 13/.style={orange}
-,nodes={
-	,text width=4mm
-	,text height=2mm
-	,text depth=1mm
-	,inner sep=1mm
-}]{
+]{
 i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8  & 9  & 10 & 11
 \\
 O & 0 & 2 & 3 & 5 & 5 & 6 & 9 & 9 & 10 & 11 & 11 & 13
