@@ -113,7 +113,7 @@ $OPT(i) = OPT \cap A_i$.
 אם
 $a_{i+1} \in OPT$
 אז $OPT$ לא יכול להכיל אף אינטרוול
-$a_{p(i+1)}, \ldots, a_{i+1}}$
+$a_{p(i+1)}, \ldots, a_{i+1}$
 לפי הנחת האינדוקציה
 $$O(p(i + 1)) \geq OPT(p(i + 1)$$
 ולכן הטענה מתקיימת כי
@@ -153,14 +153,84 @@ $O(n\log n)$
 \textbf{דוגמת הרצה:}
 \begin{center}
 \begin{tikzpicture}[very thick]
-\draw[very thin, gray!30, dashed] (0,0) grid (10, 2);
-\foreach \y \a \b \w in {
-	0/0/1/2,0/2/4/3,0/5/8/4,0/9/10/2%	
-	,1/0/2/3,1/3/6/2,1/7/10/4%	
-	,2/1/3/5,2/4/5/4,2/6/9/3%	
+\draw[very thin, gray!30, dashed] (0,0) grid (10, 3);
+\foreach \y \a \b \w \i in {
+	0/0/1/2/1 ,0/2/4/1/4 ,0/5/8/1/8 ,0/9/10/2/11%
+	,1/0/2/3/2 ,1/3/6/3/7 ,1/7/10/1/10%	
+	,2/1/3/2/3 ,2/4/5/4/6 ,2/6/9/2/9%	
+	,3/0/5/6/5%
 }{
-	\draw (\a,\y) -- (\b,\y) node[label above]{\w};
+	\draw (\a,\y) -- (\b,\y) 
+	node[label above]{\w} 
+	node[label below]{$a_{\i}$};
 }
 \end{tikzpicture}
 \end{center}
 
+נחשב:
+$$
+\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+i & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11
+\\\hline
+p & 0 & 0 & 1 & 2 & 0 & 4 & 3 & 6 & 7 & 7 & 9
+\\\hline
+\end{array}
+$$
+ו-%
+$$
+\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8  & 9  & 10 & 11
+\\\hline
+O & 0 & 2 & 3 & 5 & 5 & 6 & 9 & 9 & 10 & 11 & 11 & 13
+\\\hline
+\end{array}
+$$
+
+
+נמצא את הקבוצה עצמה:
+
+\begin{center}
+\begin{tikzpicture}
+\matrix(O) [matrix of math nodes
+,row 1 column 3/.style={orange}
+,row 1 column 5/.style={orange}
+,row 1 column 8/.style={orange}
+,row 1 column 11/.style={orange}
+,row 1 column 13/.style={orange}
+,nodes={
+	,text width=4mm
+	,text height=2mm
+	,text depth=1mm
+	,inner sep=1mm
+}]{
+i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8  & 9  & 10 & 11
+\\
+O & 0 & 2 & 3 & 5 & 5 & 6 & 9 & 9 & 10 & 11 & 11 & 13
+\\
+};
+
+\begin{scope}[thin]
+\draw (O-1-1.north west) -- (O-1-13.north east);
+\draw (O-2-1.north west) -- (O-2-13.north east);
+\draw (O-2-1.south west) -- (O-2-13.south east);
+\foreach \i in {1,...,13}{
+	\draw (O-1-\i.north west) -- (O-2-\i.south west);
+}
+\draw (O-1-13.north east) -- (O-2-13.south east);
+\end{scope}
+
+\foreach \i \j in {
+	13/11%
+	,11/9%
+	,8/6%
+	,5/3%	
+}{
+	\draw[thick, ->] (O-2-\i.south) to[bend left] (O-2-\j.south);
+}
+
+\end{tikzpicture}
+\end{center}
+
+מה יקרה אם לכל תא במערך נזכור גם את הקבוצה שמתאימה לערך התא ?
