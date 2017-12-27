@@ -54,7 +54,7 @@ automata
 \tikzset{default node/.style={
 	draw, 
 	circle,
-	inner sep=0mm,
+	inner sep=1pt,
 	minimum size=5mm,
 	very thick,
 	font=\small,
@@ -62,22 +62,29 @@ automata
 }}
 
 % LABELS
-\tikzset{label/.style={
-	draw=none,
-	sloped,
-	rectangle,
-	minimum size=0,
-	inner sep=0mm,
-}}
+\tikzset{
+	label/.style={
+		draw=none
+		,sloped
+		,rectangle
+		,minimum size=0
+		,inner sep=0mm
+	}
+	,label above/.style={
+		label
+		,midway
+		,above=.5mm
+	}	
+	,label below/.style={
+		label
+		,midway
+		,below=.5mm
+	}
+	,label inside/.style={
+		label	
+		,midway
+		,fill=white
+		,inner sep=2pt
+	}
+}
 
-\tikzset{label above/.style={
-	label,
-	midway,
-	above=.5mm,
-}}
-
-\tikzset{label below/.style={
-	label,
-	midway,
-	below=.5mm,
-}}
