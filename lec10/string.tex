@@ -37,7 +37,7 @@
 בהינתן א"ב 
 $\Sigma$
 נגדיר
-$\Sigma' = \Sigma \cup \{\varepsilon\}$.
+$\Sigma' = \Sigma \cup \{\_\}$.
 ונגדיר:
 \begin{definition}[הרחבה]
 מחרוזת
@@ -45,7 +45,7 @@ $s' \in \Sigma'^*$
 היא הרחבה של
 $s \in \Sigma^*$ 
 אם לאחר מחיקת כל תווי ה-%
-$\varepsilon$
+$\_$
 מ-$s'$ מקבלים את $s$.
 \end{definition}
 
@@ -60,7 +60,7 @@ $$\sum_{i = 1}^l w(s'_1[i], s'_2[i])$$
 \hline
 ס & ו & ו & י & ב & ו & ן
 \\\hline
-ס & ב & $\varepsilon$ & י & ב & ו & ן
+ס & ב & $\_$ & י & ב & ו & ן
 \\\hline
 \end{tabular}
 \end{example}
@@ -74,14 +74,14 @@ $$\sum_{i = 1}^l w(s'_1[i], s'_2[i])$$
 & ו 
 & י 
 & ב
-& $\varepsilon$  
+& $\_$  
 & ו 
 & ן
 \\\hline
 ס 
-& $\varepsilon$ 
-& $\varepsilon$ 
-& $\varepsilon$ 
+& $\_$ 
+& $\_$ 
+& $\_$ 
 & ב 
 & י 
 & ו 
@@ -123,32 +123,45 @@ $\Sigma$
 $|s| = m$,
 $|r| = n$
 ו-%
-$s_i = s[i] \ldots s[m]$,
-$r_j = $
-נגדיר
-$\alpha(s, r)$
-להיות המרחק בין $s$ ל-$r$.
-
+$\alpha(i, j)$
+להיות המרחק בין 
+$s[i \ldots m - 1]$ 
+ל-%
+$r[j \ldots n - 1]$.
 
 ונחשב
 $$
-\alpha(s, r) = \min
+\alpha(i, j) = \min
 \begin{cases}
-w(s[0], r[0]) + \alpha(s[1 \ldots n - 1], r[1 \ldots m - 1])
+w(s[i], r[j]) + \alpha(i + 1, j + 1])
 \\
-w(\varepsilon, r[0]) + \alpha(s, r[1 \ldots m - 1)
+w(\_, r[j]) + \alpha(i, j + 1)
 \\
-w(s[0], \varepsilon) + \alpha(s[1 \ldots n - 1], r)
+w(s[i], \_) + \alpha(i + 1, j)
 \end{cases}
 $$
 
 כמו כן מתקיים ש:%
 $$
-\begin{array}{l}
-\alpha(\varepsilon, \varepsilon) = 0
+\begin{array}{ll}
+\alpha(m, n) = 0
 \\
-\alpha(\varepsilon, r) = w(\varepsilon, r[0]) + \alpha(\varepsilon, r[1 \ldots m - 1])
+\alpha(m, k) = w(\_, r[k]) + \alpha(m, k + 1])
+&
+\forall\; 0 \leq k < n 
 \\
-\alpha(s, \varepsilon) = w(s[0], \varepsilon) + \alpha(s[1 \ldots n - 1], \varepsilon)
+\alpha(k, n) = w(s[k], \_) + \alpha(k + 1, n])
+&
+\forall\; 0 \leq k < m
 \end{array}
 $$
+
+\textbf{סיבוכיות:}
+אם מחשבים את ערכי נוסחת הנסיגה על ידי שימוש בטבלה, למשל, אז נדרש לחשב
+$mn$
+ערכים וחישוב של כל ערך לוקח 
+$O(1)$
+פעולות.
+בסך הכל מקבלים 
+$O(mn)$
+פעולות.
