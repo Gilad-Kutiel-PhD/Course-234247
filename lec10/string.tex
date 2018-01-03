@@ -1,0 +1,152 @@
+\tikzset{
+	spell/.style={
+		decorate
+		,decoration={
+			snake
+			,segment length=2pt
+			,amplitude=.5pt
+		}
+		,red!70
+		,thin	
+	}
+}
+רוצים לבצע תיקון של שגיאות איות, למשל:
+\begin{center}
+\begin{tikzpicture}
+
+\node[rectangle, inner sep=0](word) at(0,0) {סוויבון} node[left=3mm](w);
+\draw [spell] (word.south west) -- (word.south east);
+
+\begin{scope}[xshift=-2cm, yshift=-2cm]
+\foreach[count=\i] \w in {
+	סביבון
+	,סביון
+	,סבון
+}{
+	\node(\i) at(0, \i) {\w};
+	\draw[thin, dashed] (w) -- (\i);
+}
+\end{scope}
+
+
+\end{tikzpicture}
+\end{center}
+
+כדי לדעת אילו תיקונים להציע רוצים למדוד את המרחק בין המחרוזת שהוקלדה לבין המילה המוצעת.
+
+בהינתן א"ב 
+$\Sigma$
+נגדיר
+$\Sigma' = \Sigma \cup \{\varepsilon\}$.
+ונגדיר:
+\begin{definition}[הרחבה]
+מחרוזת
+$s' \in \Sigma'^*$
+היא הרחבה של
+$s \in \Sigma^*$ 
+אם לאחר מחיקת כל תווי ה-%
+$\varepsilon$
+מ-$s'$ מקבלים את $s$.
+\end{definition}
+
+בהינתן פונקציית משקל 
+$w: \Sigma' \times \Sigma' \to \mathcal{R}$
+המרחק בין שתי הרחבות בעלות אורך זהה, $n$, הוא:
+$$\sum_{i = 1}^n w(s'_1[i], s'_2[i])$$
+
+\begin{example}
+\label{example:1}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ס & ו & ו & י & ב & ו & ן
+\\\hline
+ס & ב & $\varepsilon$ & י & ב & ו & ן
+\\\hline
+\end{tabular}
+\end{example}
+
+\begin{example}
+\label{example:2}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+ס 
+& ו
+& ו 
+& י 
+& ב
+& $\varepsilon$  
+& ו 
+& ן
+\\\hline
+ס 
+& $\varepsilon$ 
+& $\varepsilon$ 
+& $\varepsilon$ 
+& ב 
+& י 
+& ו 
+& ן
+\\\hline
+\end{tabular}
+\end{example}
+
+עבור פונקציית המשקל
+$$
+w(\alpha, \beta) = 
+\begin{cases}
+0	& \text{if}\; \alpha = \beta
+\\
+1	& \text{otherwise}
+\end{cases}
+$$
+אז המרחק בדוגמה 
+\ref{example:1}
+הוא 2 ובדוגמה
+\ref{example:2}
+הוא 4.
+
+\begin{definition}[מרחק]
+המרחק בין שתי מחרוזות (לאו דווקא באורך זהה) מעל 
+$\Sigma$
+הוא המרחק המינימלי האפשרי בין כל שתי הרחבות שלהן מאורך זהה.
+\end{definition}
+
+\textbf{הערה:}
+אם מניחים שפונקציית המשקל אי שלילית אז מספר ההרחבות הרלוונטיות הוא סופי.
+
+
+בהינתן שתי מחרוזות רוצים לחשב את המרחק ביניהן.
+
+\textbf{פתרון:}
+נסמן 
+$|s| = m$
+ו-%
+$|r| = n$
+נגדיר
+$\alpha(i, j)$
+להיות המרחק בין 
+$s[i] \ldots s[m]$
+ל-%
+$r[j] \ldots r[n]$
+כלומר בין הסייפות של $s$ ו-$r$.
+
+ונחשב
+$$
+\alpha(i, j) = \min
+\begin{cases}
+w(s[i], r[j]) + \alpha(i + 1, j + 1)
+\\
+w(\varepsilon, r[j]) + \alpha(i, j + 1)
+\\
+w(s[i], \varepsilon) + \alpha(i + 1, j)
+\end{cases}
+$$
+
+כמו כן מתקיים ש:%
+$$
+\alpha(i, n + 1) = \sum_{l = i}^m w(s[i], \varepsilon)
+$$
+וגם:
+$$
+\alpha(m + 1, j) = \sum_{l = j}^m w(\varepsilon, s[j])
+$$
