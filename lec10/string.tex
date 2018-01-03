@@ -51,8 +51,8 @@ $\varepsilon$
 
 בהינתן פונקציית משקל 
 $w: \Sigma' \times \Sigma' \to \mathcal{R}$
-המרחק בין שתי הרחבות בעלות אורך זהה, $n$, הוא:
-$$\sum_{i = 1}^n w(s'_1[i], s'_2[i])$$
+המרחק בין שתי הרחבות בעלות אורך זהה, $l$, הוא:
+$$\sum_{i = 1}^l w(s'_1[i], s'_2[i])$$
 
 \begin{example}
 \label{example:1}
@@ -115,38 +115,40 @@ $\Sigma$
 אם מניחים שפונקציית המשקל אי שלילית אז מספר ההרחבות הרלוונטיות הוא סופי.
 
 
+\textbf{מטרה:}
 בהינתן שתי מחרוזות רוצים לחשב את המרחק ביניהן.
 
 \textbf{פתרון:}
 נסמן 
-$|s| = m$
-ו-%
+$|s| = m$,
 $|r| = n$
+ו-%
+$s_i = s[i] \ldots s[m]$,
+$r_j = $
 נגדיר
-$\alpha(i, j)$
-להיות המרחק בין 
-$s[i] \ldots s[m]$
-ל-%
-$r[j] \ldots r[n]$
-כלומר בין הסייפות של $s$ ו-$r$.
+$\alpha(s, r)$
+להיות המרחק בין $s$ ל-$r$.
+
 
 ונחשב
 $$
-\alpha(i, j) = \min
+\alpha(s, r) = \min
 \begin{cases}
-w(s[i], r[j]) + \alpha(i + 1, j + 1)
+w(s[0], r[0]) + \alpha(s[1 \ldots n - 1], r[1 \ldots m - 1])
 \\
-w(\varepsilon, r[j]) + \alpha(i, j + 1)
+w(\varepsilon, r[0]) + \alpha(s, r[1 \ldots m - 1)
 \\
-w(s[i], \varepsilon) + \alpha(i + 1, j)
+w(s[0], \varepsilon) + \alpha(s[1 \ldots n - 1], r)
 \end{cases}
 $$
 
 כמו כן מתקיים ש:%
 $$
-\alpha(i, n + 1) = \sum_{l = i}^m w(s[i], \varepsilon)
-$$
-וגם:
-$$
-\alpha(m + 1, j) = \sum_{l = j}^m w(\varepsilon, s[j])
+\begin{array}{l}
+\alpha(\varepsilon, \varepsilon) = 0
+\\
+\alpha(\varepsilon, r) = w(\varepsilon, r[0]) + \alpha(\varepsilon, r[1 \ldots m - 1])
+\\
+\alpha(s, \varepsilon) = w(s[0], \varepsilon) + \alpha(s[1 \ldots n - 1], \varepsilon)
+\end{array}
 $$
