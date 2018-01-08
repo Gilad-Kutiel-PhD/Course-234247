@@ -1,0 +1,126 @@
+\begin{definition}[רשת זרימה]
+רשת זרימה היא גרף מכוון, 
+$G = (V, E)$ 
+עם קיבולים על הקשתות,
+$c:E \to \mathbb{R}_+$
+צומת מקור,
+$s \in V$
+וצומת בור,
+$t \in V$.
+\end{definition}
+
+\textbf{דוגמה:}
+
+\begin{center}
+\begin{tikzpicture}[
+	every node/.style={default node}
+	,->
+	,x=1.5cm
+	,y=1.5cm
+]
+
+\node(s) at(0,0) {s};
+\foreach[count=\i] \x \y in {
+	1/2
+	,2/-2
+	,3/-1
+	,4/2
+	,5/-1
+	,6/2
+}{
+	\node(\i) at(\x,\y){};
+}
+\node(t) at(7,0) {t};
+
+\foreach \u \v \c in{
+	s/1/5, s/3/4.5%
+	,s/2/3%
+	,1/4/3%
+	,2/s/0.3%
+	,3/4/2,3/5/1.7%
+	,4/3/1%
+	,4/1/5,4/6/2%
+	,5/2/3,5/t/1%
+	,6/t/2%
+	,t/5/2%
+}{
+	\draw (\u) to[bend left] node[label inside] {\c} (\v);
+}
+
+\end{tikzpicture}
+\end{center}
+
+
+\begin{definition}[זרימה]
+בהינתן רשת זרימה,
+$(G, c, s, t)$
+זרימה היא פונקציה,
+$f:E \to \mathbb{R_+}$
+אשר מקיימת
+\begin{enumerate}
+\item
+\textbf{חוק הקשת}
+$\forall \; e \in E \hspace{1em} 0 \leq f(e) \leq c(e)$
+\item
+\textbf{חוק הצומת}
+$\forall \; v \in V \setminus {s,t} \hspace{1em} 
+\sum_{uv in E} f(uv) - \sum_{vw \in E} f(vw) = 0$
+\end{enumerate}
+
+\end{definition}
+
+נסמן ב-%
+$\delta(u) \defeq \{uv : uv \in E\}$
+את אוסף הקשתות שיוצאות מצומת $u$ וב-%
+$\rho(v) \defeq \{uv : uv \in E\}$
+את אוסף הקשתות שנכנסות לצומת $v$.
+
+נגדיר:
+$f(v) \defeq \sum_{e \in \delta(v)} f(e) - \sum_{e \in \rho(v)} f(e)$
+ונסמן ב-%
+$|f| \defeq f(s)$
+את ערך הזרימה.
+
+\textbf{דוגמה:}
+$|f| = 3$
+
+\begin{center}
+\begin{tikzpicture}[
+	every node/.style={default node}
+	,->
+	,x=1.5cm
+	,y=1.5cm
+]
+
+\node(s) at(0,0) {s};
+\foreach[count=\i] \x \y in {
+	1/2
+	,2/-2
+	,3/-1
+	,4/2
+	,5/-1
+	,6/2
+}{
+	\node(\i) at(\x,\y){};
+}
+\node(t) at(7,0) {t};
+
+\foreach \u \v \c \f in{
+	s/1/5/1, s/3/4.5/2%
+	,s/2/3/0%
+	,1/4/3/1%
+	,2/s/0.3/0%
+	,3/4/2/1,3/5/1.7/1%
+	,4/3/1/0%
+	,4/1/5/0,4/6/2/2%
+	,5/2/3/0,5/t/1/1%
+	,6/t/2/2%
+	,t/5/2/0%
+}{
+	\draw (\u) to[bend left] node[label inside] {\f/\c} (\v);
+}
+
+\end{tikzpicture}
+\end{center}
+
+

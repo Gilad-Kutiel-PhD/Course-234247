@@ -1,0 +1,30 @@
+\begin{definition}[\stcut]
+\stcut{}
+הוא תת קבוצה של צמתים שמכילה את $s$ ואינה מכילה את $t$.
+\end{definition}
+
+נרחיב את הסימונים 
+$\delta(S)$
+ו-%
+$\rho(S)$
+עבור קבוצת צמתים, כלומר
+$\delta(S) = \{uv \in E : u \in S \land v \notin S\}$
+ו-%
+$\rho(S) = \{uv \in E : u \notin S \land v \in S\} \cap E$.
+
+נגדיר
+$f(S) = \sum_{e \in \delta(S)} f(e) - \sum_{e \in \rho(S)} f(e)$
+
+נשים לב שלכל 
+$S \subseteq V$
+מתקיים
+\begin{observation}
+$f(S) = \sum_{v \in S} ()$
+\end{observation}
+
+\begin{claim}
+לכל
+\stcut, $S$,
+מתקיים
+$f(S) = |f|$.
+\end{claim}
