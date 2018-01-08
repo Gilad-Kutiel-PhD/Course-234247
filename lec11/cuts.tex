@@ -4,27 +4,62 @@
 \end{definition}
 
 נרחיב את הסימונים 
-$\delta(S)$
+$\delta$, $\rho$
 ו-%
-$\rho(S)$
+$f$
 עבור קבוצת צמתים, כלומר
-$\delta(S) = \{uv \in E : u \in S \land v \notin S\}$
+$$\delta(S) \defeq \{uv \in E : u \in S \land v \notin S\}$$
+$$\rho(S) \defeq \{uv \in E : u \notin S \land v \in S\}$$
 ו-%
-$\rho(S) = \{uv \in E : u \notin S \land v \in S\} \cap E$.
+$$f(S) \defeq \sum_{e \in \delta(S)} f(e) - \sum_{e \in \rho(S)} f(e)$$
 
-נגדיר
-$f(S) = \sum_{e \in \delta(S)} f(e) - \sum_{e \in \rho(S)} f(e)$
-
-נשים לב שלכל 
+ונשים לב שלכל 
 $S \subseteq V$
 מתקיים
 \begin{observation}
-$f(S) = \sum_{v \in S} ()$
+$f(S) = \sum_{v \in S} f(v)$
 \end{observation}
 
-\begin{claim}
+\begin{lemma}
+\label{lemma:stcut}
 לכל
 \stcut, $S$,
 מתקיים
 $f(S) = |f|$.
+\end{lemma}
+
+\begin{proof}
+נשים לב שלכל צומת, 
+$v \in S$,
+שאינו $s$ מתקיים 
+$f(v) = 0$
+ובנוסף, לפי ההגדרה, מתקיים ש-%
+$f(s) = |f|$.
+\end{proof}
+
+בפרט מתקיים ש:%
+$$
+|f| = f(V \setminus \{t\}) = -f(t)
+$$
+
+נסמן
+$$
+c(S) \defeq \sum_{e \in \delta(S)} c(e)
+$$
+
+\begin{claim}
+לכל 
+\stcut, $S$,
+מתקיים
+$|f| \leq c(S)$
 \end{claim}
+
+\begin{proof}
+לפי למה
+\ref{lemma:stcut}
+ולפי הגדרת פונקציית זרימה מתקיים ש-%
+$|f| = f(S) \leq c(S)$.
+\end{proof}
+
+הטענה האחרונה מאפשרת לנו למצוא חסם עליון על זרימת המקסימום.
+בהמשך נראה כי זהו חסם עליון הדוק.
