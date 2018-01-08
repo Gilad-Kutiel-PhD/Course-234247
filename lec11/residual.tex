@@ -85,6 +85,7 @@ $$
 \end{definition}
 
 \begin{lemma}
+\label{lemma:addition}
 אם $f$ זרימה ב-%
 $(G, s, t, c)$
 ו-$g$ זרימה ב-%
@@ -98,6 +99,7 @@ $|h| = |f| + |g|$.
 \end{lemma}
 
 \begin{proof}
+$ $\\
 \textbf{חוק הקשת:}
 מהגדרה מתקיים 
 $0 \leq h(uv)$.
@@ -120,4 +122,73 @@ h(uv) - h(vu) =
 \max\{0, -\phi(uv)\} = 
 f(uv) + g(uv) - f(vu) - g(vu)
 $$
+ולכן לכל $u$ מתקיים
+$$
+\sum_{v \in V}h(uv) - \sum_{v \in V}h(vu) = 
+\sum_{v \in V}f(uv) - \sum_{v \in V}f(vu) + 
+\sum_{v \in V}g(uv) - \sum_{v \in V}g(vu) = 0
+$$
+כאשר השוויון האחרון נובע מחוקיות $f$ ו-$g$.
+
+\textbf{ערך הזרימה:}
+נחשב
+$$
+|h| = 
+\sum_{v \in V}h(sv) - \sum_{v \in V}h(vs) = 
+\sum_{v \in V}f(sv) - \sum_{v \in V}f(vs) + 
+\sum_{v \in V}g(sv) - \sum_{v \in V}g(vs) = |f| + |g|
+$$
+\end{proof}
+
+\begin{lemma}
+\label{lemma:path}
+אם $P$ מסלול (פשוט) מ-$s$ ל-$t$ ברשת זרימה 
+$(G, s, t, c)$
+ו-%
+$\varepsilon$
+הקיבול המינימלי של קשת ב-$P$ אז הפונקציה:
+$$
+f_P(e) = 
+\begin{cases}
+\varepsilon & \text{if} \; e \in P
+\\
+0 & \text{otherwise}
+\end{cases}
+$$
+היא פונקציית זרימה.
+\end{lemma}
+
+\begin{proof}
+חוק הקשת מתקיים לפי ההגדרה של $f$ ושל 
+$\varepsilon$.
+עבור צומת פנימי במסלול, $v$, מתקיים ש-%
+$f(v) = f(vw) - f(uv) = 0$
+כאשר $u$ ו-$w$ הצמתים לפני ואחרי $v$ במסלול בהתאמה.
+\end{proof}
+
+\begin{definition}[מסלול שיפור]
+בהינתן רשת זרימה,
+$(G, s, t, c)$,
+וזרימה, $f$, 
+מסלול שיפור הוא מסלול (פשוט) מ-$s$ ל-$t$ ב-%
+$G_f$.
+\end{definition}
+
+\begin{lemma}
+\label{lemma:improve}
+אם $P$ הוא מסלול שיפור ביחס לרשת זרימה 
+$(G, s, t, c)$
+וזרימה
+$f$
+אז
+$h = f + f_P$
+זרימה חוקית ו-%
+${|h| = |f| + \varepsilon}$.
+\end{lemma}
+
+\begin{proof}
+נובע ישירות מלמות
+\ref{lemma:addition}
+ו-%
+\ref{lemma:path}.
 \end{proof}

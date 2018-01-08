@@ -1,0 +1,51 @@
+המשפט המרכזי על רשתות זרימה קובע ש:
+\begin{theorem}
+תהי $f$ פונקציית זרימה ברשת
+$(G, s, t, c)$.
+התנאים הבאים שקולים:
+\begin{enumerate}
+\item
+$f$
+היא זרימת מקסימום.
+\item
+לא קיים מסלול שיפור (ב-%
+$G_f$).
+\item
+קיים 
+\stcut{}
+ברשת שהקיבול שלו שווה ל-%
+$|f|$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$ $
+\\
+\bm{$1 \Rightarrow 2$}
+\\
+נניח בשלילה שקיים ונקבל סתירה לפי למה
+\ref{lemma:improve}.
+\\
+\bm{$2 \Rightarrow 3$}
+\\
+נסמן ב-$S$ את קבוצת הצמתים הישיגים מ-$s$ ב-%
+$G_f$.
+מלמה
+\ref{stcut}
+נובע כי
+$f(S) = |f|$
+ולפי ההגדרה של רשת שיורית נובע כי ב-$G$ מתקיים:
+$$
+\begin{array}{ll}
+\forall e \in \delta(S) & f(e) = c(e)
+\\
+\forall e \in \rho(S) & f(e) = 0
+\end{array}
+$$
+\\
+\bm{$3 \Rightarrow 1$}
+\\
+מיידי מטענה 
+\ref{claim:upper}.
+\end{proof}
+
