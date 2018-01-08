@@ -1,0 +1,123 @@
+\textbf{הערות והנחות:}
+\begin{itemize}
+\item
+נרחיב את פונקציית הקיבול ופונקציית הזרימה להיות מוגדרות עבור כל זוג צמתים.
+\item
+נניח כי לכל זוג צמתים מתקיים ש-%
+$\min\{f(uv), f(vu)\} = 0$
+אחרת ניתן לחסר את המינימום משני הערכים.
+\end{itemize}
+
+\begin{definition}[רשת זרימה שיורית]
+בהינתן רשת זרימה,
+$(G, s, t, c)$
+וזרימה, $f$, הרשת השיורית היא
+$(G_f, s, t, c_f)$
+כאשר
+
+$$
+\begin{array}{l}
+c_f(uv) \defeq c(uv) - f(uv) + f(vu)
+\\
+{G_f = (V, E_f)}
+\\
+E_f = \{uv : c_f(uv) > 0\}
+\end{array}
+$$
+\end{definition}
+
+\textbf{דוגמה:}
+
+\begin{center}
+\begin{tikzpicture}[
+	x=2cm
+	,y=2cm
+]
+
+\node(s) at(0,0) {s};
+\foreach[count=\i] \x \y in {
+	1/1,1/-1
+	,2/1,2/-1
+}{
+	\node(\i) at(\x,\y){\i};
+}
+\node(t) at(3,0) {t};
+
+\foreach \u \v \c \f in{
+	s/1/5/1, s/2/3/1%
+	,1/s/2/0, 1/3/3/1%
+	,2/4/1/1%
+	,3/t/2/1%
+	,4/t/4/1%
+	,t/4/2/0%
+}{
+	\draw (\u) to[bend left] node[label inside] {\f/\c} (\v);
+}
+
+\begin{scope}[xshift=7cm]
+\node(s) at(0,0) {s};
+\foreach[count=\i] \x \y in {
+	1/1,1/-1
+	,2/1,2/-1
+}{
+	\node(\i) at(\x,\y){\i};
+}
+\node(t) at(3,0) {t};
+
+\foreach \u \v \c  in{
+	s/1/4, s/2/2%
+	,1/s/3, 1/3/2%
+	,3/1/1,3/t/1%
+	,4/2/1,4/t/3%
+	,t/3/1,t/4/1%
+}{
+	\draw (\u) to[bend left] node[label inside] {\c} (\v);
+}
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{definition}[חיבור זרימות]
+בהינתן שתי פונקציות זרימה, $f$ ו-$g$, נגדיר את הסכום שלהן להיות:
+$$
+h(uv) = \max\{0, f(uv) + g(uv) - f(vu) - g(vu)\}
+$$
+\end{definition}
+
+\begin{lemma}
+אם $f$ זרימה ב-%
+$(G, s, t, c)$
+ו-$g$ זרימה ב-%
+$(G_f, s, t, c_f)$
+אז 
+$h = f + g$
+זרימה ב-%
+$(G, s, t, c)$
+ומתקיים 
+$|h| = |f| + |g|$.
+\end{lemma}
+
+\begin{proof}
+\textbf{חוק הקשת:}
+מהגדרה מתקיים 
+$0 \leq h(uv)$.
+כמו כן מתקיים ש-%
+$g(uv) \leq c_f(uv) = c(uv) - f(uv) + f(vu)$
+ולכן, אם
+$h(uv) \neq 0$
+אז
+$h(uv) = f(uv) + g(uv) - f(vu) - g(vu) \leq c(uv) - g(vu) \leq c(uv)$.
+
+\textbf{חוק הצומת:}
+נסמן ב-%
+$\phi(uv) \defeq f(uv) + g(uv) - f(vu) - g(vu)$
+ונשים לב ש-%
+$\phi(uv) = -\phi(vu)$
+ו-%
+$$
+h(uv) - h(vu) = 
+\max\{0, \phi(uv)\} - 
+\max\{0, -\phi(uv)\} = 
+f(uv) + g(uv) - f(vu) - g(vu)
+$$
+\end{proof}

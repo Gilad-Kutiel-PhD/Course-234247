@@ -6,6 +6,14 @@
 
 \def\stcut{חתך-\textenglish{st}}
 
+\tikzset{
+	every picture/.style={
+		every node/.style={default node}
+		,->
+		,very thick
+	}
+}
+
 \begin{document}
 \def\topcis{
 רשתות זרימה
@@ -17,6 +25,9 @@
 
 \section*{\stcut}
 \insert{cuts}
+
+\section*{רשת שיורית}
+\insert{residual}
 
 \end{document}
 
