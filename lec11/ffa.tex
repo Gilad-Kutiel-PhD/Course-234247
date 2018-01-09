@@ -1,0 +1,151 @@
+אלגוריתם גנרי למציאת זרימת מקסימום:
+
+\begin{enumerate}
+\item
+אתחול: מציבים 
+$f(e) \leftarrow 0$
+לכל
+$e \in E$
+
+\item
+כל עוד יש מסלול שיפור ברשת השיורית
+$(G_f, s, t, c_f)$
+\begin{enumerate}
+\item
+מציבים ב-$f$ את הזרימה המשופרת לפי למת שיפור הזרימה
+\end{enumerate}
+\item
+פולטים את $f$
+\end{enumerate}
+
+\begin{claim}
+אם וכאשר האלגוריתם עוצר, פלט האלגוריתם הוא זרימת מקסימום.
+\end{claim}
+
+\begin{proof}
+מיידית ממשפט
+\ref{theorem:mincutmaxflow}.
+\end{proof}
+
+\textbf{סיבוכיות:}
+בשביל לנתח את הסיבוכיות של האלגוריתם יש לדעת:
+\begin{enumerate}
+\item
+\label{item:iterations}
+לאחר כמה איטרציות האלגוריתם עוצר (אם בכלל)
+\item
+מה הסיבוכיות של כל איטרציה
+\end{enumerate}
+
+נתמקד בסעיף
+\ref{item:iterations}.
+אם כל הערכים הם שלמים אז ברור שמספר האיטרציות חסום על ידי ערך זרימת המקסימום. 
+אם הערכים רציונליים אפשר להכפיל אותם כך שכל הערכים יהיו שלמים.
+הדוגמה הבאה מראה שבמקרה הגרוע זהו חסם עליון הדוק.
+
+\begin{center}
+\begin{tikzpicture}[x=1.5cm]
+
+\foreach[count=\i] \x in {0, 5cm, 10cm}{
+	\begin{scope}[xshift=\x]
+		\node(s\i) at(0,0) {s};
+		\node(1\i) at(1,1) {};
+		\node(2\i) at(1,-1) {};
+		\node(t\i) at(2,0) {t};
+
+		\begin{scope}[yshift=-4cm]
+			\node(rs\i) at(0,0) {s};
+			\node(r1\i) at(1,1) {};
+			\node(r2\i) at(1,-1) {};
+			\node(rt\i) at(2,0) {t};
+		\end{scope}
+	\end{scope}
+	
+}
+
+%% #1
+
+\foreach \u \v \f \c in {
+	s1/11/0/k,s1/21/0/k%
+	,11/21/0/1,11/t1/0/k%
+	,21/t1/0/k%
+}{
+	\draw (\u) to[] node[label inside] {\f/\c} (\v);
+}
+
+\foreach \u \v \c in {
+	rs1/r21/k%
+	,r11/rt1/k%
+}{
+	\draw (\u) to[] node[label inside] {\c} (\v);
+}
+
+\foreach \u \v \c in {
+	rs1/r11/k%
+	,r11/r21/1%
+	,r21/rt1/k%
+}{
+	\draw[blue, dotted] (\u) to[] node[label inside] {\c} (\v);
+}
+
+%% #2
+
+\foreach \u \v \f \c in {
+	s2/12/1/k,s2/22/0/k%
+	,12/22/1/1,12/t2/0/k%
+	,22/t2/1/k%
+}{
+	\draw (\u) to[] node[label inside] {\f/\c} (\v);
+}
+
+\foreach \u \v \c in {
+	rs2/r12/k-1%
+	,r12/rs2/1%
+	,r22/rt2/k-1%
+	,rt2/r22/1%
+}{
+	\draw (\u) to[bend right] node[label inside] {\c} (\v);
+}
+
+\foreach \u \v \c in {
+	rs2/r22/k%
+	,r22/r12/1%
+	,r12/rt2/k%
+}{
+	\draw[blue, dotted] (\u) to[] node[label inside] {\c} (\v);
+}
+
+
+%% #3
+
+\foreach \u \v \f \c in {
+	s3/13/2/k,s3/23/1/k%
+	,13/23/0/1,13/t3/1/k%
+	,23/t3/2/k%
+}{
+	\draw (\u) to[] node[label inside] {\f/\c} (\v);
+}
+
+\foreach \u \v \c in {
+	rs3/r23/k-1%
+	,r13/rs3/2,r13/rt3/k-1%
+	,r23/rs3/1%
+	,rt3/r13/1,rt3/r23/2%
+}{
+	\draw (\u) to[bend right] node[label inside] {\c} (\v);
+}
+
+\draw[blue, dotted] (r13) to[] node[label inside] {1} (r23);
+
+\foreach \u \v \c in {
+	rs3/r13/k-2%
+	,r23/rt3/k-2%
+}{
+	\draw[blue, dotted] (\u) to[bend right] node[label inside] {\c} (\v);
+}
+
+\node[draw=none] at(10, 0) {$\dots$};
+\node[draw=none] at(10, -4) {$\dots$};
+
+\end{tikzpicture}
+\end{center}
