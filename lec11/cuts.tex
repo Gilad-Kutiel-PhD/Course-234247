@@ -1,17 +1,12 @@
-\begin{definition}[\stcut]
-\stcut{}
-הוא תת קבוצה של צמתים שמכילה את $s$ ואינה מכילה את $t$.
-\end{definition}
-
 נרחיב את הסימונים 
-$\delta$, $\rho$
+$\delta$, $\rho$, $f$
 ו-%
-$f$
+$c$
 עבור קבוצת צמתים, כלומר
 $$\delta(S) \defeq \{uv \in E : u \in S \land v \notin S\}$$
 $$\rho(S) \defeq \{uv \in E : u \notin S \land v \in S\}$$
-ו-%
 $$f(S) \defeq \sum_{e \in \delta(S)} f(e) - \sum_{e \in \rho(S)} f(e)$$
+$$c(S) \defeq \sum_{e \in \delta(S)} c(e)$$
 
 ונשים לב שלכל 
 $S \subseteq V$
@@ -19,6 +14,11 @@ $S \subseteq V$
 \begin{observation}
 $f(S) = \sum_{v \in S} f(v)$
 \end{observation}
+
+\begin{definition}[\stcut]
+\stcut{}
+הוא תת קבוצה של צמתים שמכילה את $s$ ואינה מכילה את $t$.
+\end{definition}
 
 \begin{lemma}
 \label{lemma:stcut}
@@ -40,11 +40,6 @@ $f(s) = |f|$.
 בפרט מתקיים ש:%
 $$
 |f| = f(V \setminus \{t\}) = -f(t)
-$$
-
-נסמן
-$$
-c(S) \defeq \sum_{e \in \delta(S)} c(e)
 $$
 
 \begin{claim}

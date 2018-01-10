@@ -37,19 +37,15 @@ $$
 \node(s) at(0,0) {s};
 \foreach[count=\i] \x \y in {
 	1/1,1/-1
-	,2/1,2/-1
 }{
 	\node(\i) at(\x,\y){\i};
 }
-\node(t) at(3,0) {t};
+\node(t) at(2,0) {t};
 
 \foreach \u \v \c \f in{
 	s/1/5/1, s/2/3/1%
-	,1/s/2/0, 1/3/3/1%
-	,2/4/1/1%
-	,3/t/2/1%
-	,4/t/4/1%
-	,t/4/2/0%
+	,1/s/2/0, 1/t/3/1%
+	,2/t/1/1%
 }{
 	\draw (\u) to[bend left] node[label inside] {\f/\c} (\v);
 }
@@ -58,18 +54,16 @@ $$
 \node(s) at(0,0) {s};
 \foreach[count=\i] \x \y in {
 	1/1,1/-1
-	,2/1,2/-1
 }{
 	\node(\i) at(\x,\y){\i};
 }
-\node(t) at(3,0) {t};
+\node(t) at(2,0) {t};
 
-\foreach \u \v \c  in{
+\foreach \u \v \c in{
 	s/1/4, s/2/2%
-	,1/s/3, 1/3/2%
-	,3/1/1,3/t/1%
-	,4/2/1,4/t/3%
-	,t/3/1,t/4/1%
+	,1/s/3, 1/t/2%
+	,2/s/1,2/t/1%
+	,t/1/1%
 }{
 	\draw (\u) to[bend left] node[label inside] {\c} (\v);
 }

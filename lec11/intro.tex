@@ -37,6 +37,19 @@ $t \in V$.
 \end{tikzpicture}
 \end{center}
 
+נסמן ב-%
+$\delta(u) \defeq \{uv : uv \in E\}$
+את אוסף הקשתות שיוצאות מצומת $u$ וב-%
+$\rho(v) \defeq \{uv : uv \in E\}$
+את אוסף הקשתות שנכנסות לצומת $v$.
+
+בהינתן פונקציה, 
+$f:E \to \mathbb{R}_+$
+נגדיר:
+$
+\forall v \in V \; 
+f(v) \defeq \sum_{e \in \delta(v)} f(e) - \sum_{e \in \rho(v)} f(e)
+$
 
 \begin{definition}[זרימה]
 בהינתן רשת זרימה,
@@ -50,8 +63,7 @@ $f:E \to \mathbb{R_+}$
 $\forall \; e \in E \hspace{1em} 0 \leq f(e) \leq c(e)$
 \item
 \textbf{חוק הצומת}
-$\forall \; v \in V \setminus {s,t} \hspace{1em} 
-\sum_{uv in E} f(uv) - \sum_{vw \in E} f(vw) = 0$
+$\forall \; v \in V \setminus {s,t} \hspace{1em} f(v) = 0$
 \end{enumerate}
 
 \end{definition}
@@ -85,14 +97,6 @@ $\forall \; v \in V \setminus {s,t} \hspace{1em}
 \end{center}
 
 נסמן ב-%
-$\delta(u) \defeq \{uv : uv \in E\}$
-את אוסף הקשתות שיוצאות מצומת $u$ וב-%
-$\rho(v) \defeq \{uv : uv \in E\}$
-את אוסף הקשתות שנכנסות לצומת $v$.
-
-נגדיר:
-$f(v) \defeq \sum_{e \in \delta(v)} f(e) - \sum_{e \in \rho(v)} f(e)$
-ונסמן ב-%
 $|f| \defeq f(s)$
 את ערך הזרימה.
 בדוגמה הקודמת מתקיים ש-%
@@ -100,3 +104,38 @@ $|f| = 3$
 
 \textbf{מטרה:}
 למצוא פונקציית זרימה חוקית עם ערך מקסימלי.
+
+לבעיית זרימת המקסימום יישומים רבים בבעיות אופטימיזציה, למשל, 
+רוצים לדעת איך להפיץ סחורה מהמפעל למחסנים ומשם ללקוחות.
+\begin{center}
+\begin{tikzpicture}[x=3cm,y=1.2cm,every node/.style={black!70,font=\Large}]
+\node[draw, circle](s) at(0,0) {s};
+\node[draw, circle](t) at(4,0){t};
+
+\node(fact) at(1,0) {\faUniversity};
+\node[above=2mm of fact]{מפעל};
+\foreach[count=\i] \y in{1,0,-1}{
+	\node(a\i) at(2,\y) {\faArchive};
+	\draw (fact) -- (a\i);
+}
+\node[above=2mm of a1]{מחסנים};
+\foreach[count=\i] \y in{2, 1,0,-1, -2}{
+	\node(c\i) at(3,\y) {\faChild};
+	\draw (c\i) -- (t);
+}
+\node[above=2mm of c1]{לקוחות};
+
+\foreach \u \v in{
+	s/fact%
+	,a1/c1,a1/c2%
+	,a2/c2,a2/c3,a2/c4%
+	,a3/c5%
+}{
+	\draw (\u) -- (\v);
+}
+
+\node[right=8mm of c5]{דרישה};
+\node[below right=2mm and 2mm of s]{\texthebrew{קצב יצור}};
+\end{tikzpicture}
+\end{center}
+
