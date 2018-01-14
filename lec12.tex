@@ -1,0 +1,44 @@
+\nonstopmode
+\documentclass[]{article}
+\input{common}
+\def\lecnum{12}
+\def\insert#1{\input{lec\lecnum/#1}}
+
+
+%%%%% Lecture Specific
+\def\stcut{חתך-\textenglish{st}}
+
+\tikzset{
+	every picture/.style={
+		every node/.style={default node}
+		,->
+		,very thick
+	}
+}
+%%%%%
+
+
+\begin{document}
+\front{%
+רשתות זרימה%
+}{
+אלגוריתם אדמונדס קרפ, שידוך בגרף דו צדדי%
+}
+
+\section*{הקדמה}
+\insert{intro}
+
+\section*{\stcut}
+\insert{cuts}
+
+\section*{רשת שיורית}
+\insert{residual}
+
+\section*{חתך מינימום זרימת מקסימום}
+\insert{mincutmaxflow}
+
+\section*{אלגוריתם פורד פלקרסון}
+\insert{ffa}
+
+\end{document}
+
