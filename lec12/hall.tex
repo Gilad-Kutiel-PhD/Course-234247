@@ -1,0 +1,134 @@
+עבור תת קבוצה של צמתים
+$U \subseteq V$
+בגרף 
+$G = (V, E)$
+נסמן ב-%
+$N(U)$
+את קבוצת השכנים של $U$, כלומר:
+$$
+N(U) \defeq \{v : uv \in E, u \in U, v \notin U\}
+$$
+\begin{theorem}[משפט הול]
+בגרף דו צדדי
+$G = (L \cup R, E)$
+שמקיים
+$|L| = |R| = n$
+קיים שידוך מושלם אם ורק אם לכל 
+$U \subseteq L$
+מתקיים ש-%
+$|U| \leq N(U)$.
+\end{theorem}
+
+נוכיח את המשפט באמצעות טיעונים על זרימה.
+
+בהינתן גרף דו צדדי 
+$G = (L \cup R, E)$
+רשת זרימה מתאימה
+$N = (G', c)$
+ו-%
+\stcut{} $S$
+נסמן ב-%
+$U \defeq S \cap L$
+וב-%
+$W \defeq S \cap R$.
+
+\begin{claim}
+אם $S$ 
+\stcut{}
+מינימום אז לא קיים צומת 
+$v \in W \setminus N(U)$.
+\end{claim}
+
+\begin{proof}
+אם קיים אז 
+$S \setminus \{v\}$
+חתך קטן יותר.
+\end{proof}
+
+\begin{claim}
+קיים
+\stcut{}
+מינימום כך ש-%
+$W = N(U)$.
+\end{claim}
+
+\begin{proof}
+נסתכל על
+\stcut{}
+מינימום,
+$S$
+שממזער את 
+$|N(U) \setminus W|$
+(השכנים של $U$ שלא ב-$S$)
+נניח בשלילה שקיים צומת 
+$v \in N(U) \setminus W$
+אז 
+$S \cup \{v\}$
+חתך עם ערך לא גדול משל $S$ - סתירה.
+\end{proof}
+
+\begin{proof}[הוכחת משפט הול]
+אם $S$
+\stcut{}
+מינימום כך ש-%
+$W = N(U)$
+ומתקיים 
+$|W| \geq |U|$
+אז ערך החתך הוא לפחות $n$.
+\end{proof}
+
+\textbf{דוגמה:}
+בדוגמה הבאה החתך הכתום מקווקו הוא חתך מינימום אבל אינו מכיל את כל השכנים של $U$, 
+אם מוסיפים את השכן של $U$ שמחוץ לחתך נקבל שוב חתך מינימום.
+החתך המנוקד הכחול אינו חתך מינימום ומכיל צומת שאינו שכן של $U$, 
+אם נוציא את הצומת מהחתך נקבל חתך מינימום.
+\begin{center}
+\begin{tikzpicture}[every node/.style={
+	circle
+	,draw
+	,fill=black
+	,inner sep=2pt
+	,minimum size=0
+}]
+
+
+\node[fill=none, draw=none](s) at(-2, 3) {s};
+\node[fill=none, draw=none](t) at(4, 3) {t};
+
+\foreach \i in {1,...,5}{
+	\node(l\i) at(0,\i) {};
+	\node(r\i) at(2,\i) {};
+	\draw (s) -- (l\i);
+	\draw (r\i) -- (t);	
+}
+
+\foreach \u \v in {
+	l1/r1,l1/r2%
+	,l2/r2%
+	,l3/r2,l3/r3,l3/r4%
+	,l4/r5,l4/r4%
+	,l5/r5%
+}{
+	\draw[] (\u) -- (\v);
+}
+
+\draw[dashed, orange,-]
+(s.west) to[out=90, in=225] 
+(l5.north west) to[out=45, in=135] 
+(r5.north east) to[out=-45, in=45]
+(l4.south east) to[out=225, in=270]
+(s.west)
+;
+
+\coordinate[above=3pt of l2](al2);
+\draw[dotted, blue,-]
+(s.west) to[out=90, in=180]
+(al2) to[out=0, in=180]
+(r3.north) to[out=0, in=45]
+(r1.south east) to[out=225, in=0]
+(l1.south) to[out=180, in=-90]
+(s.west)
+;
+
+\end{tikzpicture}
+\end{center}
