@@ -7,9 +7,11 @@ $e_1, e_2 \in M$
 מתקיים ש-%
 $e_1 \cap e_2 = \emptyset$.
 
-\begin{definition}[שידוך מושלם]
-שידוך יקרא מושלם אם 
-$|M| = \frac{|V|}{2}$.
+\begin{definition}[שידוך מקסימום]
+שידוך $M$ יקרא שידוך מקסימום אם לכל שידוך אחר,
+$M'$,
+מתקיים
+$|M'| \leq |M|$.
 \end{definition}
 
 \textbf{שידוך בגרף דו צדדי:}
@@ -36,12 +38,15 @@ $$
 	circle
 	,draw
 	,fill=black
-	,inner sep=0
-	,minimum size=1mm
+	,inner sep=2pt
+	,minimum size=0
 }]
 
-\foreach \i in {1,...,4}{
+\foreach \i in {1,...,3}{
 	\node(l\i) at(0,\i) {};
+}
+
+\foreach \i in {1,...,4}{
 	\node(r\i) at(2,\i) {};
 }
 
@@ -49,27 +54,29 @@ $$
 	l1/r1,l1/r2%
 	,l2/r2%
 	,l3/r2,l3/r3,l3/r4%
-	,l4/r1,l4/r4%
 }{
 	\draw[-] (\u) -- (\v);
 }
 
 \begin{scope}[xshift=5cm]
 
-\node[fill=none, draw=none](s) at(-1, 2.5) {s};
-\node[fill=none, draw=none](t) at(3, 2.5) {t};
-\foreach \i in {1,...,4}{
+\node[fill=none, draw=none](s) at(-2, 2.5) {s};
+\node[fill=none, draw=none](t) at(4, 2.5) {t};
+
+\foreach \i in {1,...,3}{
 	\node(l\i) at(0,\i) {};
+	\draw[thick] (s) -- (l\i);
+}
+
+\foreach \i in {1,...,4}{
 	\node(r\i) at(2,\i) {};
-	\draw (s) -- (l\i);
-	\draw (r\i) -- (t);	
+	\draw[thick] (r\i) -- (t);	
 }
 
 \foreach \u \v in {
 	l1/r1,l1/r2%
 	,l2/r2%
 	,l3/r2,l3/r3,l3/r4%
-	,l4/r1,l4/r4%
 }{
 	\draw[] (\u) -- (\v);
 }
@@ -109,8 +116,15 @@ $|M| = |f|$.
 \end{proof}
 
 \begin{corollary}
-קיים אלגוריתם פולינומי שמוצא שידוך מקסימלי.
+קיים אלגוריתם פולינומי שמוצא שידוך מקסימום.
 \end{corollary}
+
+\textbf{שידוך מושלם}
+
+\begin{definition}[שידוך מושלם]
+שידוך יקרא מושלם אם 
+$|M| = \frac{|V|}{2}$.
+\end{definition}
 
 \begin{definition}[גרף רגולרי]
 גרף לא מכוון יקרא $d$-רגולרי אם הדרגה של כל צומת היא $d$.
