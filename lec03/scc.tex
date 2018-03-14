@@ -1,0 +1,52 @@
+בהינתן גרף מכוון, 
+$G = (V, A)$
+נגדיר את היחס הבא:
+$\{(u,v) : u \rightsquigarrow v \land v \rightsquigarrow u\}$,
+כלומר צמתים $u$ ו-$v$ ביחס אם קיים מסלול מ-$u$ ל-$v$ וקיים מסלול מ-$v$ ל-$u$.
+נשים לב שזהו יחס שקילות ולכן הוא מגדיר מחלקות שקילות. 
+למחלקות שקילות אלו נקרא הרכיבים האי פריקים של $G$.
+
+\textbf{דוגמה:}
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}, ->, x=1.5cm, y=1.5cm]
+
+% NODES
+\foreach[count=\i] \x \y in {
+	0/0,0/1
+	,1/0,1/1
+	,2/0,2/1
+	,3/0,3/1
+}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+% EDGES
+\foreach \u \v in{%
+	1/2,1/3%
+	,2/4%
+	,4/1,4/3,4/6%
+	,5/7%
+	,6/5%
+}{
+	\draw[] (\u) -- (\v);
+}
+
+\foreach \u \v in{%
+	3/5%
+	,5/3%
+	,6/8%
+	,8/6%
+}{
+	\draw[] (\u) to[bend right] (\v);
+}
+
+\draw[-, orange, dashed, very thick]
+(1.south west)	to[out=135, in=225]
+(2.north west)	to[out=45, in=135]
+(4.north east)	to[out=-45,in=-45,looseness=.7]
+(1.south west)
+;
+
+\end{tikzpicture}
+\end{center}
+
