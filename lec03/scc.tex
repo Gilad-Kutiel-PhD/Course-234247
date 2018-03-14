@@ -1,0 +1,234 @@
+בהינתן גרף מכוון, 
+$G = (V, E)$
+נגדיר את היחס הבא:
+$\{(u,v) : u \rightsquigarrow v \land v \rightsquigarrow u\}$,
+כלומר צמתים $u$ ו-$v$ ביחס אם קיים מסלול מ-$u$ ל-$v$ וקיים מסלול מ-$v$ ל-$u$.
+נשים לב שזהו יחס שקילות ולכן הוא מגדיר מחלקות שקילות. 
+למחלקות שקילות אלו נקרא קבוצת הרכיבים קשירים היטב (רק"ה) של $G$.
+
+\textbf{דוגמה:}
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}, ->, x=1.5cm, y=1.5cm]
+
+% NODES
+\foreach[count=\i] \x \y in {
+	0/0,0/1
+	,1/0,1/1
+	,2/0,2/1
+	,3/0,3/1
+}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+% EDGES
+\foreach \u \v in{%
+	1/2,1/3%
+	,2/4%
+	,4/1,4/3,4/6%
+	,5/7%
+	,6/5%
+}{
+	\draw[] (\u) -- (\v);
+}
+
+\foreach \u \v in{%
+	3/5%
+	,5/3%
+	,6/8%
+	,8/6%
+}{
+	\draw[] (\u) to[bend right] (\v);
+}
+
+\begin{scope}[xshift=7cm]
+% NODES
+\foreach[count=\i] \x \y in {
+	0/0,0/1
+	,1/0,1/1
+	,2/0,2/1
+	,3/0,3/1
+}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+% EDGES
+\foreach \u \v in{%
+	1/2,1/3%
+	,2/4%
+	,4/1,4/3,4/6%
+	,5/7%
+	,6/5%
+}{
+	\draw[] (\u) -- (\v);
+}
+
+\foreach \u \v in{%
+	3/5%
+	,5/3%
+	,6/8%
+	,8/6%
+}{
+	\draw[] (\u) to[bend right] (\v);
+}
+\end{scope}
+
+\begin{scope}[-, dashed, very thick]
+
+\draw[orange!50]
+(1.south west)	to[out=135, in=225]
+(2.north west)	to[out=45, in=135]
+(4.north east)	to[out=-45,in=-45,looseness=.7]
+(1.south west)
+;
+
+\draw[blue!50]
+(3.west)	to[out=90, in=90]
+(5.east)	to[out=270, in=270]
+(3.west)
+;
+
+\draw[green!50]
+(6.west)	to[out=90, in=90]
+(8.east)	to[out=270, in=270]
+(6.west)
+;
+
+\draw[red!50, looseness=2]
+(7.west)	to[out=90, in=90]
+(7.east)	to[out=270, in=270]
+(7.west)
+;
+
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+נסמן את הרק"ה של גרף ב-%
+$C_1, \ldots, C_k$,
+אז לכל
+$i \neq j$
+מתקיים
+$C_i \cap C_j = \emptyset$
+וגם
+$\bigcup_{i=1}^k C_i = V$.
+גרף הרק"ה של $G$ יסומן ב-%
+$G_{scc} = (v_1, \ldots, v_k}, E_{scc})$
+כאשר
+$E_{scc} = \{(v_i, v_j) : \exsits (u, v) \in E, u \in C_i \land v \in C_j\}$.
+ניתן לחשוב על גרף זה כגרף המתקבל על ידי כיווץ הרק"ה של $G$ וביטול קשתות מקבילות.
+
+\textbf{דוגמה:}
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}, ->, x=1.5cm, y=1.5cm]
+
+\begin{scope}[xshift=-7cm]
+% NODES
+\foreach[count=\i] \x \y in {
+	0/0,0/1
+	,1/0,1/1
+	,2/0,2/1
+	,3/0,3/1
+}{
+	\node(\i) at(\x,\y) {\i};
+}
+
+% EDGES
+\foreach \u \v in{%
+	1/2,1/3%
+	,2/4%
+	,4/1,4/3,4/6%
+	,5/7%
+	,6/5%
+}{
+	\draw[] (\u) -- (\v);
+}
+
+\foreach \u \v in{%
+	3/5%
+	,5/3%
+	,6/8%
+	,8/6%
+}{
+	\draw[] (\u) to[bend right] (\v);
+}
+\end{scope}
+
+\begin{scope}[-, dashed, very thick]
+
+\draw[orange!50]
+(1.south west)	to[out=135, in=225]
+(2.north west)	to[out=45, in=135]
+(4.north east)	to[out=-45,in=-45,looseness=.7]
+(1.south west)
+;
+
+\draw[blue!50]
+(3.west)	to[out=90, in=90]
+(5.east)	to[out=270, in=270]
+(3.west)
+;
+
+\draw[green!50]
+(6.west)	to[out=90, in=90]
+(8.east)	to[out=270, in=270]
+(6.west)
+;
+
+\draw[red!50, looseness=2]
+(7.west)	to[out=90, in=90]
+(7.east)	to[out=270, in=270]
+(7.west)
+;
+
+\end{scope}
+
+% NODES
+\node(1)[fill=orange] at(0,1) {};
+\node(2)[fill=blue] at(1,0) {};
+\node(3)[fill=green] at(2,1) {};
+\node(4)[fill=red] at(3,0) {};
+
+% EDGES
+\foreach \u \v in{%
+	1/2,1/3%
+	,2/4%
+	,3/2%
+}{
+	\draw[] (\u) -- (\v);
+}
+
+
+
+
+
+\end{tikzpicture}
+\end{center}
+
+\begin{observation}
+גרף הרק"ה היטב חסר מעגלים.
+\end{observation}
+\begin{proof}
+אם קיים מעגל אז קיבלנו סתירה להגדרה של הגרף.
+
+\end{proof}
+
+\textbf{שאלה:}
+איך נראה גרף הרק"ה של רשת כבישים? כיצד נראה גרף הרק"ה של ויקיפדיה? של דפי האינטרנט?
+
+\textbf{מטרה:}
+בהינתן גרף מכוון נרצה למצוא את גרף הרק"ה שלו.
+פלט האלגוריתם צריך להיות מיפוי של כל צומת לרכיב קשיר היטב שמכיל אותה (מספר בין 1 ל-k).
+
+נשים לב שבהינתן מיפוי כנ"ל ניתן לבנות את גרף הרק"ה על ידי מעבר בודד על קשתות הגרף המקורי.
+
+
+
+עבור קבוצת צמתים
+$C \subseteq V$
+נרחיב את מושג הסיום מאלגוריתם 
+\textenglish{DFS}
+כך:
+$\beta(C) = \max_{v \in C}\beta(v)$.
+כלומר זמן הסיום המאוחר ביותר של צומת בקבוצה.
+
