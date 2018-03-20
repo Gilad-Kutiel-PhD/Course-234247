@@ -1,18 +1,10 @@
 בהינתן גרף מכוון, 
-<<<<<<< HEAD
 $G = (V, E)$
-=======
-$G = (V, A)$
->>>>>>> e7c502b663a6062781a1c9fb9abd4491bb69d425
 נגדיר את היחס הבא:
 $\{(u,v) : u \rightsquigarrow v \land v \rightsquigarrow u\}$,
 כלומר צמתים $u$ ו-$v$ ביחס אם קיים מסלול מ-$u$ ל-$v$ וקיים מסלול מ-$v$ ל-$u$.
 נשים לב שזהו יחס שקילות ולכן הוא מגדיר מחלקות שקילות. 
-<<<<<<< HEAD
 למחלקות שקילות אלו נקרא קבוצת הרכיבים קשירים היטב (רק"ה) של $G$.
-=======
-למחלקות שקילות אלו נקרא הרכיבים האי פריקים של $G$.
->>>>>>> e7c502b663a6062781a1c9fb9abd4491bb69d425
 
 \textbf{דוגמה:}
 \begin{center}
@@ -48,7 +40,6 @@ $\{(u,v) : u \rightsquigarrow v \land v \rightsquigarrow u\}$,
 	\draw[] (\u) to[bend right] (\v);
 }
 
-<<<<<<< HEAD
 \begin{scope}[xshift=7cm]
 % NODES
 \foreach[count=\i] \x \y in {
@@ -166,16 +157,12 @@ $E_{scc} = \{(v_i, v_j) : \exsits (u, v) \in E, u \in C_i \land v \in C_j\}$.
 \begin{scope}[-, dashed, very thick]
 
 \draw[orange!50]
-=======
-\draw[-, orange, dashed, very thick]
->>>>>>> e7c502b663a6062781a1c9fb9abd4491bb69d425
 (1.south west)	to[out=135, in=225]
 (2.north west)	to[out=45, in=135]
 (4.north east)	to[out=-45,in=-45,looseness=.7]
 (1.south west)
 ;
 
-<<<<<<< HEAD
 \draw[blue!50]
 (3.west)	to[out=90, in=90]
 (5.east)	to[out=270, in=270]
@@ -245,8 +232,3 @@ $C \subseteq V$
 $\beta(C) = \max_{v \in C}\beta(v)$.
 כלומר זמן הסיום המאוחר ביותר של צומת בקבוצה.
 
-=======
-\end{tikzpicture}
-\end{center}
-
->>>>>>> e7c502b663a6062781a1c9fb9abd4491bb69d425
