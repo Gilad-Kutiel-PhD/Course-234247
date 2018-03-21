@@ -19,7 +19,7 @@ $dist(u,v)$.
 גרף $G$ (מכוון או לא) וצומת מקור $s$.
 \\
 \textbf{פלט:}
-למצוא עץ עם שורש $s$,
+עץ עם שורש $s$,
 $T = (U, F)$, 
 $U \subseteq V$, 
 $F \subseteq E$
@@ -27,8 +27,7 @@ $F \subseteq E$
 בנוסף, לכל צומת 
 $u \in U$
 מתקיים
-$dist_T(s, u) = dist_G(s, u)$,
-$d(u) = dist(s,u)$
+$d(u) = dist_T(s, u) = dist_G(s, u)$
 ו-%
 $p(u)$
 יצביע לאבא של 
@@ -71,14 +70,15 @@ s/1%
 \end{tikzpicture}
 \end{center}
 
+\textbf{אלגוריתם:}
 \begin{enumerate}
 \item
 אתחול:
 $U \leftarrow \{s\}, F \leftarrow \emptyset$, 
 לכל 
-$v \in V$
-מציבים
-$p(v) \leftarrow nil, d(v) \leftarrow \infty$,
+$v \in V$,
+$p(v) \leftarrow nil$,
+$d(v) \leftarrow \infty$,
 $d(s) \leftarrow 0$
 \item 
 \label{item:bfs:while}
@@ -91,9 +91,9 @@ $d(u)$
 מינימלי
 	\begin{enumerate}
 	\item
-	$U \leftarrow U \cup \{v\}, F \leftarrow F \cup \{uv\}$
-	\item
-	$p(v) = u$
+	$U \leftarrow U \cup \{v\}$,
+	$F \leftarrow F \cup \{uv\}$,
+	$p(v) \leftarrow u$
 	\item
 	$d(v) = d(u) + 1$
 	\end{enumerate}
@@ -118,7 +118,8 @@ $v \in V$
 $d(v) \leq dist_G(s,v)$
 \end{claim}
 \begin{proof}
-באינדוקציה על צעד האלגוריתם
+באינדוקציה על 
+$dist_G$
 \end{proof}
 
 \begin{claim}

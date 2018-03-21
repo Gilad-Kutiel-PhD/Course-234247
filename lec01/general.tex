@@ -4,7 +4,7 @@ $G = (V, E)$
 (מכוון או לא) וצומת מקור $s$.
 \\
 \textbf{פלט:}
-למצוא עץ עם שורש $s$,
+עץ עם שורש $s$,
 $T = (U, F)$, 
 $U \subseteq V$, 
 $F \subseteq E$
@@ -100,10 +100,11 @@ $|\{u,v\} \cap S| = 1$.
 \end{tikzpicture}
 \end{center}
 
+\textbf{אלגוריתם:}
 \begin{enumerate}
 \item 
 אתחול:
-$T \leftarrow \emptyset$, 
+$F \leftarrow \emptyset$, 
 $U \leftarrow \{s\}$
 ולכל 
 $v \in V$
@@ -117,9 +118,12 @@ $uv$
 	\begin{enumerate}
 	\item
 	$U \leftarrow U \cup \{v\}$,
-	$T \leftarrow T \cup \{uv\}$,
+	$F \leftarrow F \cup \{uv\}$,
 	$p(v) \leftarrow u$
 	\end{enumerate}
+\item
+החזר
+$T = (U, F)$
 \end{enumerate}
 
 \begin{claim}

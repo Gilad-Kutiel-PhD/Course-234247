@@ -20,18 +20,18 @@ $uv$
 ($u \in U$)
 		\begin{enumerate}
 		\item
-		$U \leftarrow U \cup \{v\}, F \leftarrow F \cup \{uv\}$
+		$U \leftarrow U \cup \{v\}$,
+		$F \leftarrow F \cup \{uv\}$,
+		$p(v) \leftarrow u$
 		\item
-		$p(v) = u$
-		\item
-		$d(v) \leftarrow d(u) + 1$
+		$d(v) = d(u) + 1$
 		\item
 		$Q.push(v)$
 		\end{enumerate}
 	\end{enumerate}
 \end{enumerate}
-נשים לב שבמימוש הנ"ל כל צומת נכנסת ויוצאת מהתור לכל היותר פעם אחת 
-ובנוסף כל קשת נבדקת לכל היותר פעם אחת ולכן זמן הריצה הוא 
+נשים לב שבמימוש הנ"ל כל צומת נכנס ויוצא מהתור לכל היותר פעם אחת 
+ובנוסף כל קשת נבדקת לכל היותר פעמיים ולכן זמן הריצה הוא 
 $O(|V| + |E|)$
 נשאר להוכיח שזהו אכן מימוש של BFS.
 
