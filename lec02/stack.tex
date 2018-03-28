@@ -1,29 +1,21 @@
 \begin{enumerate}
 \item
 אתחול:
-\begin{enumerate}
-\item
-$U \leftarrow \{s\}$
-\item
-$F \leftarrow \emptyset$
-\item
+$U \leftarrow \{s\}, F \leftarrow \emptyset$, 
 לכל 
 $v \in V$
 מציבים
-$p(v) \leftarrow nil, \alpha(v) \leftarrow -1$
-\item
-$\alpha(s) \leftarrow 0$,
-\item
-$i \leftarrow 0$
-\item
-$S \leftarrow (s)$
+$p(v) \leftarrow nil, d(v) \leftarrow -1$,
+$d(s) \leftarrow 0$,
+$i \leftarrow 0$,
+\colorbox{yellow}{$S \leftarrow (s)$}
 \end{enumerate}
 
 \item
 כל עוד המחסנית לא ריקה
 \begin{enumerate}
 	\item
-	$u \leftarrow S.top()$
+	\colorbox{yellow}{$u \leftarrow S.top()$}
 	\item 
 	אם קיימת קשת 
 	$uv$
@@ -35,15 +27,17 @@ $S \leftarrow (s)$
 		\item
 		$p(v) \leftarrow u$
 		\item
-		$\alpha(v) \leftarrow i$
+		$d(v) \leftarrow i$
 		\item
-		$S.push(v)$
+		\colorbox{yellow}{$S.push(v)$}
 		\end{enumerate}
 	\item
 	אחרת 
 	\begin{enumerate}
-		\item $u \leftarrow S.pop()$
-		\item $\beta(u) = i$
+		\item 
+		\colorbox{yellow}{$u \leftarrow S.pop()$}
+		\item 
+		\colorbox{yellow}{$\beta(u) = i$}
 	\end{enumerate}
 	\item
 	$i \leftarrow i + 1$
@@ -58,7 +52,7 @@ $S \leftarrow (s)$
 \end{proof}
 \begin{claim}
 המחסנית מונוטונית עולה ביחס ל-%
-$\alpha$
+$d$
 \end{claim}
 \begin{proof}
 באינדוקציה על צעד האלגוריתם

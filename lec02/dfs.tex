@@ -5,8 +5,8 @@ $U \leftarrow \{s\}, F \leftarrow \emptyset$,
 לכל 
 $v \in V$
 מציבים
-$p(v) \leftarrow nil, \alpha(v) \leftarrow -1$,
-$\alpha(s) \leftarrow 0$,
+$p(v) \leftarrow nil, d(v) \leftarrow -1$,
+$d(s) \leftarrow 0$,
 $i \leftarrow 0$
 \item 
 כל עוד ישנה קשת 
@@ -14,7 +14,7 @@ $uv$
 שחוצה את $U$ 
 ($u \in U$)
 בחר קשת עם 
-$\alpha(u)$
+$d(u)$
 מקסימלי
 	\begin{enumerate}
 	\item
@@ -22,7 +22,7 @@ $\alpha(u)$
 	\item
 	$p(v) \leftarrow u$
 	\item
-	$\alpha(v) \leftarrow i$
+	$d(v) \leftarrow i$
 	\item
 	$i \leftarrow i + 1$
 	\end{enumerate}
