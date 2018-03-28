@@ -7,12 +7,15 @@ $U \leftarrow \{s\}, F \leftarrow \emptyset$,
 $v \in V$
 מציבים
 $p(v) \leftarrow nil, d(v) \leftarrow \infty$,
-$d(s) \leftarrow 0, Q \leftarrow (s)$
+$d(s) \leftarrow 0$,
+\colorbox{yellow}{$Q \leftarrow (s)$}
 \item 
+\colorbox{yellow}{%
 כל עוד התור לא ריק 
+}
 \begin{enumerate}
 	\item
-	$u \leftarrow Q.pop()$
+	\colorbox{yellow}{$u \leftarrow Q.pop()$}
 \item
 כל עוד ישנה קשת 
 $uv$
@@ -26,7 +29,7 @@ $uv$
 		\item
 		$d(v) = d(u) + 1$
 		\item
-		$Q.push(v)$
+		\colorbox{yellow}{$Q.push(v)$}
 		\end{enumerate}
 	\end{enumerate}
 \end{enumerate}
