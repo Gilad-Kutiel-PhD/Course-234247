@@ -157,7 +157,6 @@ $G_{scc} = (\mathcal{C}, E_{scc})$
 $E_{scc} = \{(C_i, C_j) : \exists\;(u, v) \in E, u \in C_i \land v \in C_j\}$.
 ניתן לחשוב על גרף זה כגרף המתקבל על ידי כיווץ הרק"ה של $G$ וביטול קשתות מקבילות.
 
-\pagebreak
 \textbf{דוגמה:}
 \begin{center}
 \begin{tikzpicture}[every node/.style={default node}, ->, x=1.5cm, y=1.5cm]
@@ -269,25 +268,13 @@ $f(C) = \max_{v \in C}f(v)$.
 כלומר זמן הסיום המאוחר ביותר של צומת בקבוצה.
 
 
-\begin{claim}
-לכל גרף ולכל ריצת 
-\textenglish{DFS}
-הצומת הראשון שמתגלה בכל רק"ה הוא אב קדמון של כל שאר הצמתים באותו הרק"ה ביער ה-%
-\textenglish{DFS}.
-\end{claim}
-
-\begin{proof}
-נסתכל על רק"ה, $C$, ועל הצומת הראשון שמתגלה בו, $v$,
-מכיוון ש-$C$ רק"ה אז בזמן גילוי $v$ קיים מסלול לבן מ-$v$ לכל צומת אחר ברק"ה וההוכחה
-נובעת ישירות ממשפט המסלול הלבן.
-\end{proof}
 הטענה הבאה מתייחסת לגרף רק"ה.
 \begin{claim}
 אם
 $(C_i,C_j) \in E_{scc}$
 אז לכל ריצת 
 \textenglish{DFS}
-על הגרף המקורי $G$ מתקיים ש-%
+על הגרף המקורי, $G$, מתקיים ש-%
 $f(C_i) > f(C_j)$.
 \end{claim}
 
@@ -341,7 +328,7 @@ $G_{scc}$,
 \foreach[count=\i] \x \y in{
 	0/0
 	,1/1,1/-1
-	,2/1
+	,3/1
 	,3/-1
 }{
 	\node(\i) at(\x,\y) {$C_{\i}$};
@@ -376,29 +363,9 @@ $G^T = (V, E^T)$
 $E^T = \{(u, v) : (v, u) \in E\}$.
 \end{definition}
 
-\begin{claim}
-$(G_{scc})^T = (\mathcal{C}, (E_{scc})^T) = (\mathcal{C}, (E^T)_{scc}) = (G^T)_{scc}$.
-\end{claim}
-
-\begin{proof}
-נשים לב שהפיכת כיווני הקשתות לא משנה את היחס
-$R_\mathcal{C}$.
-בנוסף על פי הגדרה
-$$
-\begin{array}{lll}
-(E_{scc})^T = 
-&
-\{(C_i, C_j) : (C_j, C_i) \in E_{scc}\} =
-\\&
-\{(C_i, C_j) : \exists\;(v, u) \in E,  u \in C_i \land v \in C_j\} =
-\\&
-\{(C_i, C_j) : \exists\;(u, v) \in E^T, u \in C_i \land v \in C_j\} =
-&
-(E^T)_{scc}
-\end{array}
-$$
-.
-\end{proof}
+\begin{observation}
+$(G_{scc})^T = (G^T)_{scc}$.
+\end{observation}
 
 \textbf{דוגמה:}
 \begin{center}
@@ -561,3 +528,45 @@ $$
 \end{tikzpicture}
 \end{center}
 
+\begin{corollary}
+אם
+$(C_i,C_j) \in E_{scc}^T$
+אז לכל ריצת 
+\textenglish{DFS}
+על הגרף המקורי, $G$, מתקיים ש-%
+$f(C_i) < f(C_j)$.
+\end{corollary}
+
+\textbf{אלגוריתם:}
+\begin{enumerate}
+\item
+הרץ 
+\textenglish{DFS}
+על $G$.
+\item
+הרץ 
+\textenglish{DFS}
+על 
+$G^T$,
+בחר את הצמתים בסדר יורד של זמן הסיום שלהם משלב 1.
+\item
+החזר את יער ה-%
+\textenglish{DFS}
+שהתקבל בשלב 2 (כל עץ הוא רכיב קשיר היטב)
+
+\end{enumerate}
+
+\begin{claim}
+כל עץ ביער ה-%
+\textenglish{DFS}
+שמוחזר בשלב 3 הוא רכיב קשירות.
+\end{claim}
+
+\begin{prood}
+באינדוקציה על העץ מספר העץ.
+
+\textbf{צעד:}
+נניח בשלילה שמהשורש ה-%
+$i+1$
+קיים מסלול לבן לצומת ברכיב קשירות אחר ונקבל סתירה על הסדר שבו אנחנו בוחרים את השורשים.
+\end{proof}
