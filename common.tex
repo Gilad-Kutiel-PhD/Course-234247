@@ -1,32 +1,21 @@
 % LIBS
 \usepackage[margin=2.5cm, top=2cm, bottom=1.5cm]{geometry}
 \usepackage{fancyhdr}
-\usepackage{amsmath,amssymb,mathtools,amsthm, amsfonts}
-\usepackage{soul}
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\usepackage{color,soul}
 \usepackage{tikz}
 \usepackage{csquotes}
 \usepackage{listings}
+\usepackage{polyglossia,enumitem}
 \usepackage{bm}
 \usepackage{fontawesome}
-\usepackage{fontspec}
-\usepackage{enumitem, polyglossia}
-\usepackage{lmodern}
-\usepackage{morewrites}
-\usepackage{xcolor,sectsty} % colorful sections
-\usepackage{esint} % beatiful integrals
-
 
 % HEBREW
-
-\setdefaultlanguage{hebrew}
-\setotherlanguage{english}
-
-\newfontfamily\hebrewfont{FreeSans}
-
-\newfontfamily\hebrewfontsf{FreeSans}
-\newfontfamily\hebrewfonttt{FreeSans}
-\hebrewfont\bfseries
+\setmainlanguage{hebrew}
+\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
+\let\hebrewfonttt\ttfamily
 \setlist[itemize,1]{label={\fontfamily{cmr}\fontencoding{T1}\selectfont\textbullet}}
+\setotherlanguage{english}
 
 % HEADER
 \pagestyle{fancy}
@@ -53,29 +42,29 @@
 
 % FRONT
 \newcommand{\front}[2]{
-\newpage
-\vspace*{1cm}
-\begin{center}
-\Huge{הרצאה \lecnum}
-
-\vspace*{5cm}
-\Huge{#1}
-
-\vspace*{1cm}
-\huge{#2}
-\end{center}
-\newpage
+	\newpage
+	\vspace*{1cm}
+	\begin{center}
+		\Huge{הרצאה \lecnum}
+		
+		\vspace*{5cm}
+		\Huge{#1}
+		
+		\vspace*{1cm}
+		\huge{#2}
+	\end{center}
+	\newpage
 }
 
 % TIKZ
 \usetikzlibrary{
-automata
-,arrows
-,arrows.meta
-,shapes
-,positioning
-,matrix
-,decorations.pathmorphing
+	automata
+	,arrows
+	,arrows.meta
+	,shapes
+	,positioning
+	,matrix
+	,decorations.pathmorphing
 }
 
 \tikzset{>=latex, thick}
@@ -83,13 +72,13 @@ automata
 
 % NODE
 \tikzset{default node/.style={
-	draw, 
-	circle,
-	inner sep=1pt,
-	minimum size=5mm,
-	very thick,
-	font=\small,
-	black!70,
+		draw, 
+		circle,
+		inner sep=1pt,
+		minimum size=5mm,
+		very thick,
+		font=\small,
+		black!70,
 }}
 
 % LABELS
