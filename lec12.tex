@@ -1,8 +1,17 @@
 \nonstopmode
 \documentclass[]{article}
 \input{common}
-\def\lecnum{12}
-\def\insert#1{\input{lec\lecnum/#1}}
+
+
+\begin{document}
+	\def\lecnum{12}
+	\def\insert#1{\input{lec\lecnum/#1}}
+\front{%
+רשתות זרימה%
+}{
+אלגוריתם אדמונדס קרפ, שידוך בגרף דו צדדי, משפט הול%
+}
+
 
 
 %%%%% Lecture Specific
@@ -16,14 +25,6 @@
 	}
 }
 %%%%%
-
-
-\begin{document}
-\front{%
-רשתות זרימה%
-}{
-אלגוריתם אדמונדס קרפ, שידוך בגרף דו צדדי, משפט הול%
-}
 
 \section*{תזכורת}
 \insert{remainder}
