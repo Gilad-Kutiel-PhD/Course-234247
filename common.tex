@@ -42,28 +42,29 @@
 
 % FRONT
 \newcommand{\front}[2]{
-\vspace*{1cm}
-\begin{center}
-\Huge{הרצאה \lecnum}
-
-\vspace*{5cm}
-\Huge{#1}
-
-\vspace*{1cm}
-\huge{#2}
-\end{center}
-\newpage
+	\newpage
+	\vspace*{1cm}
+	\begin{center}
+		\Huge{הרצאה \lecnum}
+		
+		\vspace*{5cm}
+		\Huge{#1}
+		
+		\vspace*{1cm}
+		\huge{#2}
+	\end{center}
+	\newpage
 }
 
 % TIKZ
 \usetikzlibrary{
-automata
-,arrows
-,arrows.meta
-,shapes
-,positioning
-,matrix
-,decorations.pathmorphing
+	automata
+	,arrows
+	,arrows.meta
+	,shapes
+	,positioning
+	,matrix
+	,decorations.pathmorphing
 }
 
 \tikzset{>=latex, thick}
@@ -71,13 +72,13 @@ automata
 
 % NODE
 \tikzset{default node/.style={
-	draw, 
-	circle,
-	inner sep=1pt,
-	minimum size=5mm,
-	very thick,
-	font=\small,
-	black!70,
+		draw, 
+		circle,
+		inner sep=1pt,
+		minimum size=5mm,
+		very thick,
+		font=\small,
+		black!70,
 }}
 
 % LABELS
