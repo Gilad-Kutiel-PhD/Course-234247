@@ -1,21 +1,32 @@
 % LIBS
 \usepackage[margin=2.5cm, top=2cm, bottom=1.5cm]{geometry}
 \usepackage{fancyhdr}
-\usepackage{amsmath,amssymb,mathtools,amsthm}
-\usepackage{color,soul}
+\usepackage{amsmath,amssymb,mathtools,amsthm, amsfonts}
+\usepackage{soul}
 \usepackage{tikz}
 \usepackage{csquotes}
 \usepackage{listings}
-\usepackage{polyglossia,enumitem}
 \usepackage{bm}
 \usepackage{fontawesome}
+\usepackage{fontspec}
+\usepackage{enumitem, polyglossia}
+\usepackage{lmodern}
+\usepackage{morewrites}
+\usepackage{xcolor,sectsty} % colorful sections
+\usepackage{esint} % beatiful integrals
+
 
 % HEBREW
-\setmainlanguage{hebrew}
-\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
-\let\hebrewfonttt\ttfamily
-\setlist[itemize,1]{label={\fontfamily{cmr}\fontencoding{T1}\selectfont\textbullet}}
+
+\setdefaultlanguage{hebrew}
 \setotherlanguage{english}
+
+\newfontfamily\hebrewfont{FreeSans}
+
+\newfontfamily\hebrewfontsf{FreeSans}
+\newfontfamily\hebrewfonttt{FreeSans}
+\hebrewfont\bfseries
+\setlist[itemize,1]{label={\fontfamily{cmr}\fontencoding{T1}\selectfont\textbullet}}
 
 % HEADER
 \pagestyle{fancy}
@@ -42,6 +53,7 @@
 
 % FRONT
 \newcommand{\front}[2]{
+\newpage
 \vspace*{1cm}
 \begin{center}
 \Huge{הרצאה \lecnum}
