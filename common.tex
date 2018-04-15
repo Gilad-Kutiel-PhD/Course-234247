@@ -66,7 +66,11 @@
 \makeatletter
 \@ifclassloaded{book}{%
 	\renewcommand{\front}[2]{
-	\chapter{#1 #2}
+	\ifx&#2&%
+		\chapter{#1}
+	\else
+		\chapter{#1 - #2}
+	\fi	
   }%
 }{}
 \makeatother
