@@ -125,23 +125,15 @@ $R_\mathcal{C}$
 \end{tikzpicture}
 \end{center}
 
-\begin{claim}
-אם שני צמתים, $u$ ו-$v$ שייכים לאותו הרק"ה ובנוסף מתקיים ש-%
-$u \rightsquigarrow w \rightsquigarrow v$
-אז גם $w$ שייך לאותו הרק"ה.
-\end{claim}
+\textbf{דיון:}
+הציעו אלגוריתם (יעיל ככל האפשר) שבהינתן גרף מכוון,
+$G = (V, E)$,
+וצומת,
+$v \in V$,
+מוצא את רכיב הקשירות של $v$.
 
-\begin{proof}
-מספיק להראות ש-%
-$w \rightsquigarrow u$
-וזה נכון כיוון ש-%
-$w \rightsquigarrow v$
-(נתון)
-ו-%
-$v \rightsquigarrow u$
-(באותו הרק"ה).
-\end{proof}
 
+\subsection*{גרף הרכיבים קשירים היטב}
 נסמן את קבוצת הרק"ה של גרף ב-%
 $\mathcal{C} = \{C_1, \ldots, C_k\}$,
 אז לכל
@@ -251,6 +243,7 @@ $E_{scc} = \{(C_i, C_j) : \exists\;(u, v) \in E, u \in C_i \land v \in C_j\}$.
 \textbf{שאלה:}
 איך נראה גרף הרק"ה של רשת כבישים? כיצד נראה גרף הרק"ה של ויקיפדיה? של דפי האינטרנט?
 
+\subsection*{אלגוריתם למציאת רכיבים קשירים היטב}
 \textbf{מטרה:}
 בהינתן גרף מכוון נרצה למצוא את גרף הרק"ה שלו.
 פלט האלגוריתם צריך להיות מיפוי של כל צומת לרכיב קשיר היטב שמכיל אותה (מספר בין 1 ל-k).
@@ -563,10 +556,38 @@ $G^T$,
 \end{claim}
 
 \begin{proof}
-באינדוקציה על העץ מספר העץ.
+באינדוקציה על העץ ה-$i$ בריצת ה-%
+\textenglish{DFS}.
 
 \textbf{צעד:}
-נניח בשלילה שמהשורש ה-%
+נשים לב שעל פי הנחת האינדוקציה, מהשורש ה-%
 $i+1$
-קיים מסלול לבן לצומת ברכיב קשירות אחר ונקבל סתירה על הסדר שבו אנחנו בוחרים את השורשים.
+קיים מסלול לבן לכל הצמתים ברק"ה שלו.
+נניח בשלילה שקיים מסלול לבן לצומת ברכיב קשירות אחר 
+ונקבל סתירה על הסדר שבו אנחנו בוחרים את השורשים.
 \end{proof}
+
+\begin{center}
+\begin{tikzpicture}[
+]
+
+\begin{scope}[
+	every node/.style={
+		triangle
+		,draw
+		,minimum size=20mm
+		,inner sep=0
+		,x=7mm
+	}
+]
+\node[fill=black!70] at(0,0) {};
+\node[draw=none] at(3,0) {$\cdots$};
+\node[fill=black!70] at(6,0) {};
+\node at(9,0) {$i + 1$};
+\node at(12,0) {};
+\node[draw=none] at(15,0) {$\cdots$};
+\node at(18,0) {};
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
