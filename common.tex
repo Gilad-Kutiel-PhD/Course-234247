@@ -53,15 +53,24 @@
 	\vspace*{1cm}
 	\begin{center}
 		\Huge{הרצאה \lecnum}
-		
+	
 		\vspace*{5cm}
 		\Huge{#1}
-		
+	
 		\vspace*{1cm}
 		\huge{#2}
 	\end{center}
 	\newpage
 }
+
+\makeatletter
+\@ifclassloaded{book}{%
+	\renewcommand{\front}[2]{
+	\chapter{#1 #2}
+  }%
+}{}
+\makeatother
+  
 
 % TIKZ
 \usetikzlibrary{
