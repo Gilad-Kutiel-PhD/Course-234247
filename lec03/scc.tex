@@ -563,10 +563,38 @@ $G^T$,
 \end{claim}
 
 \begin{proof}
-באינדוקציה על העץ מספר העץ.
+באינדוקציה על העץ ה-$i$ בריצת ה-%
+\textenglish{DFS}.
 
 \textbf{צעד:}
-נניח בשלילה שמהשורש ה-%
+נשים לב שעל פי הנחת האינדוקציה, מהשורש ה-%
 $i+1$
-קיים מסלול לבן לצומת ברכיב קשירות אחר ונקבל סתירה על הסדר שבו אנחנו בוחרים את השורשים.
+קיים מסלול לבן לכל הצמתים ברק"ה שלו.
+נניח בשלילה שקיים מסלול לבן לצומת ברכיב קשירות אחר 
+ונקבל סתירה על הסדר שבו אנחנו בוחרים את השורשים.
 \end{proof}
+
+\begin{center}
+\begin{tikzpicture}[
+]
+
+\begin{scope}[
+	every node/.style={
+		triangle
+		,draw
+		,minimum size=20mm
+		,inner sep=0
+		,x=7mm
+	}
+]
+\node[fill=black!70] at(0,0) {};
+\node[draw=none] at(3,0) {$\cdots$};
+\node[fill=black!70] at(6,0) {};
+\node at(9,0) {$i + 1$};
+\node at(12,0) {};
+\node[draw=none] at(15,0) {$\cdots$};
+\node at(18,0) {};
+\end{scope}
+
+\end{tikzpicture}
+\end{center}

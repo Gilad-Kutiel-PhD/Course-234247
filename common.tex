@@ -78,15 +78,21 @@
 \tikzset{every picture/.style=very thick}
 
 % NODE
-\tikzset{default node/.style={
-		draw, 
-		circle,
-		inner sep=1pt,
-		minimum size=5mm,
-		very thick,
-		font=\small,
-		black!70,
-}}
+\tikzset{
+	default node/.style={
+		draw
+		,circle
+		,inner sep=1pt
+		,minimum size=5mm
+		,very thick
+		,font=\small
+		,black!70
+	}
+	,triangle/.style={
+		regular polygon
+		,regular polygon sides=3
+	}
+}
 
 % LABELS
 \tikzset{
