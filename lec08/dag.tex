@@ -1,0 +1,82 @@
+כאשר הגרף חסר מעגלים ניתן למצוא את משקל המסלול הקל ביותר על ידי נוסחה רקורסיבית פשוטה.
+\\
+\textbf{דוגמה:}
+נתון גרף חסר מעגלים.
+
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}, x=2cm]
+\foreach[count=\i] \x \y in {
+	0/0
+	,1/1
+	,1/-1
+	,2/-1
+	,2/1
+	,3/0
+}{
+	\node(\i) at(\x, \y){\i};
+}
+
+\foreach \u \v \w in {
+	1/2/1%
+	,1/3/2%
+	,2/3/3%
+	,2/5/1%		
+	,3/4/2%
+	,4/6/3%
+	,4/5/1%
+	,5/6/2%	
+}{
+	\draw[->] (\u) to node[label inside]{$\w$} (\v);
+}
+\end{tikzpicture}
+\end{center}
+
+ונתון מיון טופולוגי שלו:
+\begin{center}
+\begin{tikzpicture}[every node/.style={default node}, x=2cm]
+
+\foreach \i in {1,...,6}{
+	\node(\i) at(\i, 0){\i};
+}
+
+\foreach \u \v \w in {
+	1/2/1%
+	,2/3/3%
+	,3/4/2%
+	,4/5/1%
+	,5/6/2%	
+}{
+	\draw[->] (\u) to[bend left] node[label inside]{$\w$} (\v);
+}
+
+\foreach \u \v \w in {
+	1/3/2%
+	,2/5/1%		
+	,4/6/3%
+}{
+	\draw[->] (\u) to[bend right] node[label inside]{$\w$} (\v);
+}
+
+\end{tikzpicture}
+\end{center}
+
+\begin{claim}
+$$
+\delta(j) = \min_{ij \in E} \delta(i) + w(ij)
+$$
+\end{claim}
+
+\begin{proof}
+באינדוקציה על $j$.
+\end{proof}
+
+נשים לב שאם מחשבים את הערך של 
+$\delta$
+לפי סדר המיון הטופולוגי אז סיבוכיות החישובי היא 
+$O(|E| + |V|)$.
+
+\textbf{הערה:}
+ניתן גם לשחזר את המסלולים הקלים ביותר על ידי שמירת מצביע לאבא של כל צומת.
+\\
+\textbf{שאלה:}
+מדוע אי אפשר להשתמש באותה טכניקה גם עבור גרפים שמכילים מעגלים?
