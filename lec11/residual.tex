@@ -1,27 +1,25 @@
-\textbf{הערות והנחות:}
-\begin{itemize}
-\item
-נרחיב את פונקציית הקיבול ופונקציית הזרימה להיות מוגדרות עבור כל זוג צמתים.
-\item
-נניח כי לכל זוג צמתים מתקיים ש-%
-$\min\{f(uv), f(vu)\} = 0$
-אחרת ניתן לחסר את המינימום משני הערכים.
-\end{itemize}
+\textbf{הנחה:}
+נניח בלי הגבלת הכלליות (למה?) שברשת הזרימה (המקורית) אין קשתות אנטי-מקביליות.
 
-\begin{definition}[רשת זרימה שיורית]
+\begin{definition}[רשת שיורית]
 בהינתן רשת זרימה,
-$(G, s, t, c)$
+$N = (G, s, t, c)$
 וזרימה, $f$, הרשת השיורית היא
-$(G_f, s, t, c_f)$
-כאשר
+$N_f = (G_f, s, t, c_f)$
+כאשר אם 
+$G = (V, E)$ 
+אז
 
 $$
 \begin{array}{l}
-c_f(uv) \defeq c(uv) - f(uv) + f(vu)
+G_f = (V, E_f = E \cup \overline{E})
 \\
-{G_f = (V, E_f)}
+\overline{E} = \{\overline{e} = vu : e = uv \in E\}
 \\
-E_f = \{uv : c_f(uv) > 0\}
+c_f(\overline{e}) \defeq f(e)
+\\
+c_f(e) \defeq c(e) - f(e)
+\\
 \end{array}
 $$
 \end{definition}
@@ -44,10 +42,10 @@ $$
 
 \foreach \u \v \c \f in{
 	s/1/5/1, s/2/3/1%
-	,1/s/2/0, 1/t/3/1%
+	,1/t/3/1%
 	,2/t/1/1%
 }{
-	\draw (\u) to[bend left] node[label inside] {\f/\c} (\v);
+	\draw (\u) -- node[label inside] {\f/\c} (\v);
 }
 
 \begin{scope}[xshift=7cm]
@@ -63,7 +61,7 @@ $$
 	s/1/4, s/2/2%
 	,1/s/3, 1/t/2%
 	,2/s/1,2/t/1%
-	,t/1/1%
+	,t/1/1, t/2/0%
 }{
 	\draw (\u) to[bend left] node[label inside] {\c} (\v);
 }
@@ -72,22 +70,20 @@ $$
 \end{center}
 
 \begin{definition}[חיבור זרימות]
-בהינתן שתי פונקציות זרימה, $f$ ו-$g$, נגדיר את הסכום שלהן להיות:
+אם $f$ זרימה ב-
+$G$
+ו-$g$ זרימה ב-
+$G_f$
+נגדיר את הסכום שלהן להיות:
 $$
-h(uv) = \max\{0, f(uv) + g(uv) - f(vu) - g(vu)\}
+\forall e \in E: \; h(e) = f(e) + g(e) - g(\overline{e})
 $$
 \end{definition}
 
 \begin{lemma}
 \label{lemma:addition}
-אם $f$ זרימה ב-%
-$(G, s, t, c)$
-ו-$g$ זרימה ב-%
-$(G_f, s, t, c_f)$
-אז 
-$h = f + g$
-זרימה ב-%
-$(G, s, t, c)$
+$h$
+היא פונקציית זרימה ב-$N$
 ומתקיים 
 $|h| = |f| + |g|$.
 \end{lemma}
@@ -95,42 +91,30 @@ $|h| = |f| + |g|$.
 \begin{proof}
 $ $\\
 \textbf{חוק הקשת:}
-מהגדרה מתקיים 
-$0 \leq h(uv)$.
-כמו כן מתקיים ש-%
-$g(uv) \leq c_f(uv) = c(uv) - f(uv) + f(vu)$
-ולכן, אם
-$h(uv) \neq 0$
-אז
-$h(uv) = f(uv) + g(uv) - f(vu) - g(vu) \leq c(uv) - g(vu) \leq c(uv)$.
+
+$
+c(e) \geq
+f(e) + c(e) - f(e) - g(\overline{e}) \geq
+f(e) + g(e) - g(\overline{e}) \geq 
+f(e) + g(e) - f(e) \geq 0
+$
+
+
 
 \textbf{חוק הצומת:}
-נסמן ב-%
-$\phi(uv) \defeq f(uv) + g(uv) - f(vu) - g(vu)$
-ונשים לב ש-%
-$\phi(uv) = -\phi(vu)$
-ו-%
 $$
-h(uv) - h(vu) = 
-\max\{0, \phi(uv)\} - 
-\max\{0, -\phi(uv)\} = 
-f(uv) + g(uv) - f(vu) - g(vu)
-$$
-ולכן לכל $u$ מתקיים
-$$
-\sum_{v \in V}h(uv) - \sum_{v \in V}h(vu) = 
-\sum_{v \in V}f(uv) - \sum_{v \in V}f(vu) + 
-\sum_{v \in V}g(uv) - \sum_{v \in V}g(vu) = 0
-$$
-כאשר השוויון האחרון נובע מחוקיות $f$ ו-$g$.
-
-\textbf{ערך הזרימה:}
-נחשב
-$$
-|h| = 
-\sum_{v \in V}h(sv) - \sum_{v \in V}h(vs) = 
-\sum_{v \in V}f(sv) - \sum_{v \in V}f(vs) + 
-\sum_{v \in V}g(sv) - \sum_{v \in V}g(vs) = |f| + |g|
+\begin{array}{*2{>{\displaystyle}l}r}
+\sum_{uv \in E} h(uv) - \sum_{vw \in E} h(vw) = 
+\\
+&	\sum_{uv \in E} f(uv) + g(uv) - g(vu) - 
+	\sum_{vw \in E} f(vw) + g(vw) - g(wv) = 
+\\
+&	\sum_{uv \in E} f(uv) -
+	\sum_{vw \in E} f(vw) +
+\\
+&	\sum_{uv \in E} (g(uv) - g(vu)) -
+	\sum_{vw \in E} (g(vw) - g(wv)) = & 	0 + 0 + 0
+\end{array}
 $$
 \end{proof}
 
