@@ -69,6 +69,23 @@ $$
 \end{tikzpicture}
 \end{center}
 
+נשים לב שאם 
+$g$ 
+זרימה ברשת שיורית 
+$N_f$ 
+אז מתקיים:
+$$
+\begin{array}{*2{>{\displaystyle}l}}
+g(v) = 
+\\&
+\sum_{vu \in E_f} g(vu) - \sum_{uv \in E_f} g(uv) = 
+\\&
+\sum_{vu \in E} g(vu) + \sum_{uv \in E} g(vu) - 
+\sum_{uv \in E} g(uv) - \sum_{vu \in E} g(uv) =
+\\&
+\sum_{vu \in E} (g(vu) - g(uv)) - \sum_{uv \in E} (g(uv) - g(vu))
+\end{array}
+$$
 \begin{definition}[חיבור זרימות]
 אם $f$ זרימה ב-
 $N$
