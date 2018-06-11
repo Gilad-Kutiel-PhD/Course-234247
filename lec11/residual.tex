@@ -120,7 +120,7 @@ $
 
 \textbf{חוק הצומת:}
 $$
-\begin{array}{*2{>{\displaystyle}l}r}
+\begin{array}{*2{>{\displaystyle}l}}
 h(v) = \sum_{vu \in E} h(vu) - \sum_{uv \in E} h(uv) = 
 \\&	
 \sum_{vu \in E} f(vu) + g(vu) - g(uv) - 
@@ -131,28 +131,11 @@ h(v) = \sum_{vu \in E} h(vu) - \sum_{uv \in E} h(uv) =
 \\&	
 \sum_{vu \in E} (g(vu) - g(uv)) -
 \sum_{uv \in E} (g(uv) - g(vu)) = 
-\\&&
-0 + 0
+\\&
+f(v) + g(v)
 \end{array}
 $$
 
-\textbf{ערך הזרימה:}
-$$
-\begin{array}{*2{>{\displaystyle}l}r}
-h(s) = \sum_{su \in E} h(su) - \sum_{us \in E} h(us) = 
-\\&	
-\sum_{su \in E} f(su) + g(su) - g(us) - 
-\sum_{us \in E} f(us) + g(us) - g(su) = 
-\\&	
-\sum_{su \in E} f(su) -
-\sum_{us \in E} f(us) +
-\\&	
-\sum_{su \in E} (g(su) - g(us)) -
-\sum_{us \in E} (g(us) - g(su)) = 
-\\&&
-f(s) + g(s) 
-\end{array}
-$$
 \end{proof}
 
 \begin{lemma}
