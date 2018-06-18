@@ -79,12 +79,21 @@ $d_{f_i}(v) \leq d_{f_j}(v)$
 
 \begin{corollary}
 אם
-$uv \in E_{f_{i + 1}}$
+$uv \in E_{f_{i}}, E_{f_{j + 1}}$
 ו-%
-$uv \notin E_{f_{i}}$
+$uv \notin E_{f_{i + 1}}, E_{f_{j}}$ 
+עבור 
+$i + 1 < j$ 
+כלשהם
 אז
-$d_{f_{i + 1}}(v) \geq d(f_{i}(v)) + 2$.
+$d_{f_{j+1}}(v) \geq d(f_{i}(v)) + 2$.
 \end{corollary}
+
+\begin{proof}
+נשים לב שקשת $uv$ נעלמת/חוזרת רק אם הקשת $uv$/$vu$ נמצאת על מסלול שיפור בהתאמה, 
+ולכן מתקיים ש-
+$d_{f_j}(u) = d_{f_j}(v) + 1 \geq d_{f_i}(v) + 1 = d_{f_i}(u) + 2$.
+\end{proof}
 
 \begin{definition}[קשת קריטית]
 בהינתן מסלול $P$ נגיד שקשת $e$ במסלול היא 
