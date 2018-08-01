@@ -9,3 +9,5 @@
 *.fdb_latexmk
 *.gz
 *.toc
+*.xdv
+*.out
