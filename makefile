@@ -24,5 +24,5 @@
 	latexmk -pdf -xelatex -pvc lec12.tex    
 13:
 	latexmk -pdf -xelatex -pvc lec13.tex    
-main:
+main: 01 02 03 04 05 06 07 08 09 10 11 12 13
 	latexmk -pdf -xelatex -pvc main.tex    
